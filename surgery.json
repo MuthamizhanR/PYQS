@@ -1,0 +1,347 @@
+{
+  "SURGERY": {
+    "long_essays": {
+      "gastroenterology_and_hepatology": [
+        {
+          "topic": "Obstructive Jaundice / Periampullary Carcinoma",
+          "frequency": 4,
+          "details": "Painless progressive jaundice, palpable gallbladder (Courvoisier’s sign), pruritus, clay-colored stools, investigations (MRCP), management (Whipple's procedure)"
+        },
+        {
+          "topic": "Upper GI Bleed",
+          "frequency": 2,
+          "details": "Hematemesis and melena, initial assessment, differential diagnosis, management of variceal bleed"
+        },
+        {
+          "topic": "Dysphagia / Esophageal Carcinoma",
+          "frequency": 3,
+          "details": "Progressive dysphagia (liquids vs solids), investigations, management"
+        },
+        {
+          "topic": "Acute Peritonitis / Acute Abdomen",
+          "frequency": 2,
+          "details": "Etiology, clinical features, investigations, treatment; includes perforation peritonitis"
+        },
+        {
+          "topic": "Intestinal Obstruction",
+          "frequency": 1,
+          "details": "Bilious vomiting, distension, constipation (prior surgery history)"
+        },
+        {
+          "topic": "Acute Pancreatitis",
+          "frequency": 1,
+          "details": "Clinical presentation, investigations, treatment"
+        },
+        {
+          "topic": "Gastric Outlet Obstruction (GOO)",
+          "frequency": 1,
+          "details": "Vomiting, weight loss, epigastric pain, management algorithm"
+        },
+        {
+          "topic": "Abdominal Trauma / Gunshot",
+          "frequency": 2,
+          "details": "Hypotension, resuscitation, operative indications"
+        }
+      ],
+      "endocrine_and_breast": [
+        {
+          "topic": "Thyroid Swelling / Nodule",
+          "frequency": 5,
+          "details": "Solitary nodule evaluation, Papillary Carcinoma management, Toxic nodule presentation"
+        },
+        {
+          "topic": "Thyrotoxicosis / Graves' Disease",
+          "frequency": 1,
+          "details": "Diffuse goiter, exophthalmos, management modalities"
+        },
+        {
+          "topic": "Breast Carcinoma",
+          "frequency": 1,
+          "details": "Lump with nipple indrawing, assessment, staging, management"
+        }
+      ],
+      "urology_and_genital": [
+        {
+          "topic": "Carcinoma Penis / Penile Ulcer",
+          "frequency": 6,
+          "details": "Ulceroproliferative lesion, etiology, pathogenesis, management (penectomy + nodal dissection)"
+        },
+        {
+          "topic": "Retention of Urine",
+          "frequency": 3,
+          "details": "Acute retention in elderly/trauma, emergency and definitive management"
+        },
+        {
+          "topic": "Hematuria",
+          "frequency": 2,
+          "details": "Painless hematuria, causes, investigations, management"
+        },
+        {
+          "topic": "Urolithiasis / Ureteric Colic",
+          "frequency": 1,
+          "details": "Loin pain, management of ureteric stone"
+        }
+      ],
+      "general_surgery_and_trauma": [
+        {
+          "topic": "Shock and Trauma",
+          "frequency": 6,
+          "details": "Primary/Secondary survey, Hypovolemic/Obstructive shock, Resuscitation"
+        },
+        {
+          "topic": "Peripheral Vascular Disease / Gangrene",
+          "frequency": 2,
+          "details": "Dry gangrene, claudication, differential diagnosis"
+        },
+        {
+          "topic": "Lower Limb Ulcer",
+          "frequency": 1,
+          "details": "Non-healing ulcer (SCC), causes, management"
+        },
+        {
+          "topic": "Malignant Melanoma",
+          "frequency": 1,
+          "details": "Classification, clinical features, prognostic factors, management"
+        }
+      ],
+      "orthopedics": [
+        {
+          "topic": "Avascular Necrosis (AVN) of Femur",
+          "frequency": 2,
+          "details": "Causes, clinico-radiological staging, management"
+        },
+        {
+          "topic": "Hip Fractures (Neck Femur)",
+          "frequency": 2,
+          "details": "Classification, management in various age groups"
+        },
+        {
+          "topic": "Spinal Tuberculosis (Pott's Spine)",
+          "frequency": 1,
+          "details": "Clinical presentation, differential diagnosis, management algorithm"
+        },
+        {
+          "topic": "Osteomyelitis",
+          "frequency": 1,
+          "details": "Chronic Osteomyelitis of Tibia in children, etiopathogenesis, management"
+        },
+        {
+          "topic": "Disc Prolapse / Low Back Pain",
+          "frequency": 1,
+          "details": "Radiating pain, diagnostic workup, management"
+        },
+        {
+          "topic": "Pediatric Hip (DDH/Perthes)",
+          "frequency": 2,
+          "details": "Limping child, flexion deformity, management options"
+        },
+        {
+          "topic": "CTEV (Clubfoot)",
+          "frequency": 1,
+          "details": "Etiopathogenesis, clinical features, management"
+        },
+        {
+          "topic": "Rheumatoid Arthritis",
+          "frequency": 1,
+          "details": "Pathophysiology, biological agents, surgical interventions"
+        },
+        {
+          "topic": "Spinal Cord Compression / Cauda Equina",
+          "frequency": 1,
+          "details": "Diabetic with incontinence, inability to move legs, pathophysiology, management"
+        }
+      ]
+    },
+    "short_notes": {
+      "general_and_trauma": [
+        {
+          "topic": "Burns",
+          "frequency": 6,
+          "details": "Assessment, Rule of Nines, Fluids, Electrical burns, Classification"
+        },
+        {
+          "topic": "Wound Healing / Care",
+          "frequency": 5,
+          "details": "Factors affecting healing, Phases, VAC therapy, Antibiotic prophylaxis"
+        },
+        {
+          "topic": "Nutrition",
+          "frequency": 5,
+          "details": "TPN, Enteral feeding indications/complications/routes"
+        },
+        {
+          "topic": "SIRS / Septic Shock",
+          "frequency": 4,
+          "details": "Systemic Inflammatory Response Syndrome definition and management"
+        },
+        {
+          "topic": "Blood Transfusion",
+          "frequency": 3,
+          "details": "Massive transfusion, complications, blood products"
+        },
+        {
+          "topic": "Skin Tumors",
+          "frequency": 7,
+          "details": "Basal Cell Carcinoma (x5), Melanoma, Marjolin's Ulcer, Soft tissue sarcoma"
+        },
+        {
+          "topic": "Ulcers / Gangrene",
+          "frequency": 6,
+          "details": "Venous ulcer, Fournier's gangrene, Gas gangrene, Rest pain, Venous gangrene"
+        },
+        {
+          "topic": "Miscellaneous",
+          "frequency": 4,
+          "details": "Consent, Safety Checklist, Universal Precautions, Hospital Acquired Infections"
+        }
+      ],
+      "gastroenterology": [
+        {
+          "topic": "Hydatid Disease",
+          "frequency": 4,
+          "details": "Liver cyst management, Life cycle"
+        },
+        {
+          "topic": "Pancreatitis Complications",
+          "frequency": 3,
+          "details": "Pseudocyst, local complications"
+        },
+        {
+          "topic": "Hernia",
+          "frequency": 5,
+          "details": "Lichtenstein repair, Umbilical, Strangulated, Diaphragmatic, Hiatal"
+        },
+        {
+          "topic": "Anal Pathology",
+          "frequency": 6,
+          "details": "Fissure (x3), Fistula (x2), Hemorrhoids, Goodsall's rule, Rectal prolapse"
+        },
+        {
+          "topic": "Liver Abscess",
+          "frequency": 3,
+          "details": "Amoebic, Pyogenic, Splenic abscess"
+        },
+        {
+          "topic": "Peptic Ulcer / Stomach",
+          "frequency": 5,
+          "details": "Pathophysiology, Bleeding ulcer, HPS, Lymphatic drainage"
+        },
+        {
+          "topic": "Miscellaneous GI",
+          "frequency": 7,
+          "details": "Achalasia cardia (x2), Volvulus (x2), Intussusception, Meckel's, ERCP, Appendicular mass"
+        }
+      ],
+      "endocrine_and_breast": [
+        {
+          "topic": "Thyroid Disorders",
+          "frequency": 6,
+          "details": "Complications of surgery, Solitary nodule evaluation, Medullary CA, Storm, Thyroglossal cyst"
+        },
+        {
+          "topic": "Breast Cancer / Disease",
+          "frequency": 7,
+          "details": "Phylloides, Inflammatory, Chemotherapy, Conservation surgery, Axillary LN, Paget's, ANDI"
+        },
+        {
+          "topic": "MEN Syndromes",
+          "frequency": 2,
+          "details": "Multiple Endocrine Neoplasia"
+        },
+        {
+          "topic": "Parathyroid",
+          "frequency": 1,
+          "details": "Renal Hyperparathyroidism"
+        },
+        {
+          "topic": "Adrenal",
+          "frequency": 1,
+          "details": "Phaeochromocytoma"
+        }
+      ],
+      "urology": [
+        {
+          "topic": "Scrotal / Testicular",
+          "frequency": 6,
+          "details": "Undescended testis (Cryptorchidism), Seminoma, Torsion, Pyocele, Epididymo-orchitis"
+        },
+        {
+          "topic": "Urinary Tract",
+          "frequency": 5,
+          "details": "Ureteric colic, Lithotripsy, TURP, LUTS, Retention"
+        },
+        {
+          "topic": "Renal",
+          "frequency": 1,
+          "details": "Wilms Tumor"
+        },
+        {
+          "topic": "Penis",
+          "frequency": 2,
+          "details": "Staging CA Penis, Circumcision"
+        }
+      ],
+      "head_and_neck": [
+        {
+          "topic": "Salivary Glands",
+          "frequency": 5,
+          "details": "Pleomorphic adenoma, Parotid surgery comp, Sialolithiasis, Ranula"
+        },
+        {
+          "topic": "Neck Swellings",
+          "frequency": 4,
+          "details": "Cervical LN (TB), Cystic hygroma, Branchial cyst, Cold abscess"
+        },
+        {
+          "topic": "Oral",
+          "frequency": 2,
+          "details": "Premalignant lesions, CA Tongue management"
+        }
+      ],
+      "neurosurgery_and_anesthesia": [
+        {
+          "topic": "Traumatic Brain Injury",
+          "frequency": 6,
+          "details": "Extradural Hematoma (x4), Subdural Hematoma, GCS, Lucid interval"
+        },
+        {
+          "topic": "Spinal / Anesthesia",
+          "frequency": 5,
+          "details": "Complications of spinal anesthesia, Epidural anesthesia, Intubation complications"
+        },
+        {
+          "topic": "Congenital Neuro",
+          "frequency": 2,
+          "details": "Meningocele, Hydrocephalus"
+        }
+      ],
+      "orthopedics": [
+        {
+          "topic": "Bone Tumors",
+          "frequency": 5,
+          "details": "Osteosarcoma, Ewing's, GCT, Osteochondroma, Benign vs Malignant"
+        },
+        {
+          "topic": "Trauma / Fractures",
+          "frequency": 6,
+          "details": "Monteggia (x3), Colles, Scaphoid, Open fractures, Fracture healing, Compartment syndrome (x5)"
+        },
+        {
+          "topic": "Pediatric Ortho",
+          "frequency": 5,
+          "details": "CTEV, DDH, Perthes, SCFE, Blounts"
+        },
+        {
+          "topic": "Spine",
+          "frequency": 4,
+          "details": "Potts Paraplegia, Disc prolapse, Spondylolisthesis"
+        },
+        {
+          "topic": "Metabolic / Infection",
+          "frequency": 4,
+          "details": "Rickets, Vitamin D, Chronic Osteomyelitis, Septic Arthritis"
+        }
+      ]
+    }
+  }
+}
