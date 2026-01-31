@@ -12,226 +12,229 @@
     <script src="medtrix_core.js"></script>
 
     <style>
-        /* --- 1. THEME VARIABLES --- */
+        /* --- 1. CORE THEME --- */
         :root {
-            --bg: #f3f4f6;
-            --bg-gradient: radial-gradient(circle at 0% 0%, #e0f2fe, #f3f4f6);
-            --glass: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.9);
-            --text: #1f2937;
-            --subtext: #6b7280;
-            --accent: #2563eb;
-            --success: #10b981;
-            --high-yield: #ef4444; 
-        }
-
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --bg-gradient: radial-gradient(circle at 50% 0%, #1e293b, #0f172a);
-            --glass: rgba(30, 41, 59, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg: #0f172a; /* Default to dark for "Pro" feel */
+            --header-bg: rgba(15, 23, 42, 0.95);
+            --card-bg: rgba(30, 41, 59, 0.7);
             --text: #f1f5f9;
             --subtext: #94a3b8;
             --accent: #38bdf8;
-            --high-yield: #f87171;
+            --high-yield: #ef4444; 
+            --mid-yield: #3b82f6;
+            --border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- 2. APP LAYOUT (FIXED VIEWPORT) --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
-        html, body {
-            height: 100%; /* Force full height */
-            overflow: hidden; /* Stop page-wide scrolling */
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg); background-image: var(--bg-gradient);
-            color: var(--text);
+        /* Light Mode Override */
+        [data-theme="light"] {
+            --bg: #f3f4f6;
+            --header-bg: rgba(243, 244, 246, 0.95);
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --subtext: #6b7280;
+            --accent: #2563eb;
+            --border: 1px solid #e5e7eb;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
         body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; /* Prevent body scroll, we scroll #main-view instead */
+            height: 100vh;
             display: flex;
-            flex-direction: column; /* Stack elements vertically */
+            flex-direction: column;
         }
 
-        /* Fixed Header Section */
-        .app-header {
-            flex-shrink: 0; /* Don't shrink */
-            padding: 15px 15px 5px 15px;
+        /* --- 2. FIXED HEADER (The "App" Shell) --- */
+        .fixed-header {
+            flex-shrink: 0;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: var(--border);
+            padding: 15px 10px 5px;
+            z-index: 50;
             text-align: center;
-            z-index: 10;
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif; font-size: 1.6rem;
-            background: linear-gradient(135deg, var(--text), var(--accent));
-            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Sticky Tabs */
-        .nav-container {
-            flex-shrink: 0;
-            display: flex; justify-content: center;
-            padding-bottom: 15px;
+        /* Scrollable Tabs */
+        .nav-scroller {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            justify-content: center;
         }
-        
+
         .nav-tabs {
-            display: flex; gap: 5px;
-            background: var(--glass); backdrop-filter: blur(12px);
-            padding: 6px; border-radius: 50px;
-            border: 1px solid var(--glass-border); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-flex;
+            gap: 8px;
+            padding: 4px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 100px;
+            border: var(--border);
         }
 
         .tab-btn {
-            background: transparent; border: none;
-            color: var(--subtext); padding: 8px 16px;
-            border-radius: 25px; cursor: pointer;
-            font-family: 'Orbitron', sans-serif; font-size: 0.75rem;
-            transition: 0.3s;
+            background: transparent;
+            border: none;
+            color: var(--subtext);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
         .tab-btn.active {
-            background: var(--accent); color: white;
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        /* --- SCROLLABLE CONTENT AREA ("The Iframe") --- */
-        #scroll-viewport {
-            flex-grow: 1; /* Take up all remaining space */
-            overflow-y: auto; /* Scroll internally */
-            overflow-x: hidden;
-            padding: 0 15px 80px 15px; /* Bottom padding for FAB buttons */
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            
-            /* Smooth scrolling */
+        /* --- 3. SCROLLABLE CONTENT AREA --- */
+        #main-view {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px 15px 80px 15px; /* Bottom padding for FAB */
             scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
         }
 
-        /* Scrollbar Styling */
-        #scroll-viewport::-webkit-scrollbar { width: 6px; }
-        #scroll-viewport::-webkit-scrollbar-thumb { background: var(--subtext); border-radius: 10px; opacity: 0.3; }
-
-        /* --- 3. ACCORDIONS --- */
-        .accordion-item {
-            margin-bottom: 10px;
+        /* --- 4. COMPONENTS --- */
+        
+        /* Accordion (Categories) */
+        .category-block {
+            margin-bottom: 12px;
+            border: var(--border);
             border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: var(--glass);
+            background: var(--card-bg);
             overflow: hidden;
         }
 
-        .accordion-header {
-            width: 100%; padding: 14px 18px;
+        .category-header {
+            padding: 14px 16px;
             display: flex; justify-content: space-between; align-items: center;
-            background: transparent; border: none;
-            color: var(--text); font-family: 'Poppins', sans-serif;
-            font-weight: 600; font-size: 0.95rem;
-            text-align: left; cursor: pointer;
-            text-transform: capitalize; /* Makes keys look nice */
-        }
-        
-        .chevron { transition: transform 0.3s; color: var(--subtext); font-size: 0.8rem; }
-        .accordion-header.active { background: rgba(37, 99, 235, 0.08); }
-        .accordion-header.active .chevron { transform: rotate(180deg); color: var(--accent); }
-
-        .accordion-panel {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
             background: rgba(0,0,0,0.02);
         }
-        .accordion-content { padding: 12px; }
+        
+        .cat-title { text-transform: capitalize; }
+        .chevron { transition: transform 0.2s; font-size: 0.8rem; color: var(--subtext); }
+        .category-header.active .chevron { transform: rotate(180deg); color: var(--accent); }
 
-        /* Nested Accordion tweaks */
-        .accordion-panel .accordion-item { border: none; background: rgba(0,0,0,0.03); margin-bottom: 6px; }
-        .accordion-panel .accordion-header { font-size: 0.85rem; padding: 10px 14px; opacity: 0.9; }
-
-        /* --- 4. CARDS --- */
-        .topic-grid {
-            display: grid; 
-            grid-template-columns: 1fr; /* Default to 1 column for mobile */
-            gap: 12px;
+        .category-content {
+            display: none; /* Hidden by default */
+            padding: 10px;
+            background: rgba(0,0,0,0.05);
+            border-top: var(--border);
         }
-        /* Tablet/Desktop: 2 Columns */
-        @media(min-width: 768px) { .topic-grid { grid-template-columns: 1fr 1fr; } }
+        .category-content.open { display: block; animation: slideDown 0.2s ease-out; }
 
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Topic List Grid */
+        .topic-list {
+            display: flex; flex-direction: column; gap: 10px;
+        }
+
+        /* Topic Card */
         .topic-card {
             display: flex; gap: 12px;
-            background: var(--glass); border: 1px solid var(--glass-border);
-            padding: 14px; border-radius: 12px;
-            position: relative; transition: 0.2s;
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 8px;
+            border: var(--border);
+            position: relative;
         }
 
-        .topic-card.high-yield { border-left: 4px solid var(--high-yield); }
-        .topic-card.mid-yield { border-left: 4px solid var(--accent); }
-        .topic-card.low-yield { border-left: 4px solid var(--success); }
+        /* Yield Colors */
+        .topic-card[data-yield="high"] { border-left: 4px solid var(--high-yield); }
+        .topic-card[data-yield="mid"] { border-left: 4px solid var(--mid-yield); }
+        .topic-card[data-yield="low"] { border-left: 4px solid var(--subtext); }
 
-        .topic-card.completed { opacity: 0.5; filter: grayscale(1); }
+        /* Completed State */
+        .topic-card.done { opacity: 0.5; }
+        .topic-card.done .t-title { text-decoration: line-through; }
 
-        /* Checkbox */
-        .checkbox-wrapper { padding-top: 2px; }
-        .custom-checkbox {
-            width: 22px; height: 22px;
-            border: 2px solid var(--subtext); border-radius: 6px;
+        /* Custom Checkbox */
+        .check-box {
+            width: 24px; height: 24px;
+            border: 2px solid var(--subtext);
+            border-radius: 6px;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: white; font-size: 12px;
+            flex-shrink: 0;
+            cursor: pointer;
+            margin-top: 2px;
         }
-        .custom-checkbox.checked { background: var(--success); border-color: var(--success); }
+        .check-box.checked {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
 
-        .card-content { flex-grow: 1; min-width: 0; } /* min-width 0 fixes text overflow */
-        .topic-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-        .topic-title { font-weight: 700; font-size: 0.9rem; line-height: 1.3; }
+        .t-content { flex-grow: 1; }
+        .t-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .t-title { font-size: 0.9rem; font-weight: 700; line-height: 1.3; }
+        .t-freq { 
+            font-size: 0.7rem; font-family: 'Orbitron'; 
+            background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;
+            height: fit-content; white-space: nowrap; margin-left: 8px;
+        }
+        .t-desc { font-size: 0.8rem; color: var(--subtext); line-height: 1.4; }
+
+        /* Utils */
+        .error-msg { text-align: center; color: var(--high-yield); padding: 20px; }
+        .loading { text-align: center; color: var(--subtext); padding: 40px; }
         
-        .freq-tag { 
-            font-size: 0.65rem; padding: 2px 6px; border-radius: 6px; 
-            font-family: 'Orbitron'; background: rgba(0,0,0,0.05); font-weight: bold;
-            white-space: nowrap; margin-left: 8px;
-        }
-        .high-yield .freq-tag { color: var(--high-yield); background: rgba(239, 68, 68, 0.1); }
-
-        .topic-details { 
-            font-size: 0.75rem; color: var(--subtext); margin-top: 4px; line-height: 1.4;
-            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; /* Truncate long text */
-        }
-
-        /* --- UTILS --- */
-        .ctrl-btn {
-            position: fixed; width: 45px; height: 45px; border-radius: 50%;
-            background: var(--glass); border: 1px solid var(--glass-border);
+        .fab {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--accent); color: white;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; cursor: pointer; color: var(--text);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); backdrop-filter: blur(10px);
-            z-index: 200; text-decoration: none;
+            font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer; z-index: 100;
         }
-        .home-btn { bottom: 20px; left: 20px; }
-        .theme-btn { bottom: 20px; right: 20px; }
-        .loading-msg { text-align: center; padding: 40px; color: var(--subtext); }
+        .fab-left { left: 20px; right: auto; background: var(--card-bg); color: var(--text); border: var(--border); }
+
     </style>
 </head>
 <body>
 
-    <div class="app-header">
+    <div class="fixed-header">
         <h1>PYQ TRACKER</h1>
-    </div>
-    <div class="nav-container">
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchSubject('og', this)">OG</button>
-            <button class="tab-btn" onclick="switchSubject('surgery', this)">Surgery</button>
-            <button class="tab-btn" onclick="switchSubject('medicine', this)">Medicine</button>
-            <button class="tab-btn" onclick="switchSubject('paediatrics', this)">Peds</button>
+        <div class="nav-scroller">
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="loadSubject('og', this)">OG</button>
+                <button class="tab-btn" onclick="loadSubject('surgery', this)">Surgery</button>
+                <button class="tab-btn" onclick="loadSubject('medicine', this)">Medicine</button>
+                <button class="tab-btn" onclick="loadSubject('paediatrics', this)">Peds</button>
+            </div>
         </div>
     </div>
 
-    <div id="scroll-viewport">
+    <div id="main-view">
         </div>
 
-    <a href="index.html" class="ctrl-btn home-btn"><i class="fas fa-home"></i></a>
-    <div class="ctrl-btn theme-btn" onclick="toggleAppTheme()">🌓</div>
+    <a href="index.html" class="fab fab-left"><i class="fas fa-home"></i></a>
+    <div class="fab" onclick="toggleTheme()"><i class="fas fa-adjust"></i></div>
 
     <script>
-        // CONFIG
+        // --- CONFIG ---
         const FILES = {
             'og': 'og.json',
             'surgery': 'surgery.json',
@@ -240,155 +243,169 @@
         };
         let currentSubject = 'og';
 
-        // THEME
-        function toggleAppTheme() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('medtrix-theme', next);
+        // --- THEME ---
+        function toggleTheme() {
+            const el = document.documentElement;
+            const newTheme = el.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            el.setAttribute('data-theme', newTheme);
+            localStorage.setItem('medtrix-theme', newTheme);
         }
-        (function() { document.documentElement.setAttribute('data-theme', localStorage.getItem('medtrix-theme') || 'light'); })();
+        // Set initial theme
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('medtrix-theme') || 'dark');
 
-        // LOGIC
-        switchSubject('og', document.querySelector('.tab-btn'));
+        // --- INIT ---
+        loadSubject('og', document.querySelector('.tab-btn'));
 
-        async function switchSubject(subjectKey, btn) {
-            currentSubject = subjectKey;
+        async function loadSubject(key, btn) {
+            currentSubject = key;
+            // Tab UI
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
-            
-            const viewport = document.getElementById('scroll-viewport');
-            viewport.innerHTML = '<div class="loading-msg"><i class="fas fa-circle-notch fa-spin"></i> Loading...</div>';
+
+            const view = document.getElementById('main-view');
+            view.innerHTML = '<div class="loading"><i class="fas fa-circle-notch fa-spin"></i> Loading Data...</div>';
 
             try {
-                const response = await fetch(FILES[subjectKey]);
-                if(!response.ok) throw new Error("File missing");
-                const data = await response.json();
-                viewport.innerHTML = '';
-                buildRecursive(data, viewport, 'root');
+                const res = await fetch(FILES[key]);
+                if(!res.ok) throw new Error("File not found");
+                const data = await res.json();
+                
+                view.innerHTML = '';
+                // Universal Parser
+                parseAndRender(data, view, 'root');
             } catch (e) {
-                viewport.innerHTML = `<div class="loading-msg" style="color:var(--high-yield)">Error loading data.</div>`;
+                console.error(e);
+                view.innerHTML = `<div class="error-msg">Failed to load ${key}.json<br><small>Check console or filename</small></div>`;
             }
         }
 
-        function cleanTitle(str) {
-            // Converts "OBSTETRICS_AND_GYNAECOLOGY" -> "Obstetrics And Gynaecology"
-            return str.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-        }
-
-        function buildRecursive(data, parentEl, pathID) {
+        // --- NEW UNIVERSAL PARSER ---
+        // This function decides if 'data' is a Group of topics or a Single topic or a Folder
+        function parseAndRender(data, container, pathId) {
+            
+            // 1. Normalize: Convert Object/Array to standard list of entries
             let entries = [];
-            if (Array.isArray(data)) entries = data.map((val, idx) => ({ key: idx, value: val }));
-            else if (typeof data === 'object' && data !== null) entries = Object.entries(data).map(([k, v]) => ({ key: k, value: v }));
-            else return;
-
-            const isLeaf = entries.some(e => e.value && typeof e.value === 'object' && 'frequency' in e.value);
-
-            if (isLeaf) {
-                renderTopicList(entries, parentEl);
+            if (Array.isArray(data)) {
+                entries = data.map((v, i) => ({ key: i, val: v }));
+            } else if (typeof data === 'object' && data !== null) {
+                entries = Object.entries(data).map(([k, v]) => ({ key: k, val: v }));
             } else {
-                entries.forEach(entry => {
-                    const { key, value } = entry;
-                    if (typeof value === 'object' && value !== null) {
-                        // Formatting Title
-                        let rawTitle = isNaN(parseInt(key)) ? key : `Section ${parseInt(key) + 1}`;
-                        let title = cleanTitle(rawTitle);
-
-                        const accordionItem = document.createElement('div');
-                        accordionItem.className = 'accordion-item';
-                        const uniqueID = `${pathID}_${key.toString().replace(/\W/g, '')}`;
-
-                        accordionItem.innerHTML = `
-                            <button class="accordion-header" onclick="toggleAccordion(this)">
-                                <span>${title}</span>
-                                <i class="fas fa-chevron-down chevron"></i>
-                            </button>
-                            <div class="accordion-panel">
-                                <div class="accordion-content" id="${uniqueID}"></div>
-                            </div>
-                        `;
-                        parentEl.appendChild(accordionItem);
-                        buildRecursive(value, accordionItem.querySelector(`#${uniqueID}`), uniqueID);
-                    }
-                });
+                return; // Primitive value (string/number), ignore
             }
-        }
 
-        function renderTopicList(entries, parentEl) {
-            const grid = document.createElement('div');
-            grid.className = 'topic-grid';
+            // 2. Separate Topics (Leafs) from Folders (Nodes)
+            let topics = [];
+            let folders = [];
 
-            let topics = entries
-                .filter(e => e.value && typeof e.value === 'object' && 'frequency' in e.value)
-                .map(e => {
-                    let name = isNaN(parseInt(e.key)) ? e.key : (e.value.topic || e.value.name || "Topic");
-                    return { name: name, ...e.value };
-                });
-
-            topics.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
-
-            topics.forEach(t => {
-                const freq = t.frequency || 0;
-                let yieldClass = 'low-yield';
-                if (freq >= 5) yieldClass = 'high-yield';
-                else if (freq >= 3) yieldClass = 'mid-yield';
-
-                const storageKey = `medtrix_done_${currentSubject}_${t.name.replace(/\W/g, '')}`;
-                const isChecked = localStorage.getItem(storageKey) === 'true';
-
-                const card = document.createElement('div');
-                card.className = `topic-card ${yieldClass} ${isChecked ? 'completed' : ''}`;
-                card.onclick = (e) => toggleTopic(e, card, storageKey);
-
-                card.innerHTML = `
-                    <div class="checkbox-wrapper">
-                        <div class="custom-checkbox ${isChecked ? 'checked' : ''}">
-                            ${isChecked ? '<i class="fas fa-check"></i>' : ''}
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="topic-header-row">
-                            <span class="topic-title">${t.name}</span>
-                            <span class="freq-tag">${freq}x</span>
-                        </div>
-                        <div class="topic-details">${t.details || ''}</div>
-                    </div>
-                `;
-                grid.appendChild(card);
+            entries.forEach(entry => {
+                const { key, val } = entry;
+                
+                // If it has 'frequency', IT IS A TOPIC
+                if (val && typeof val === 'object' && 'frequency' in val) {
+                    // Handle case where topic name is the key (Object style) or inside val (Array style)
+                    let name = val.topic || val.name || (isNaN(key) ? key : "Untitled Topic");
+                    topics.push({ name: name, ...val });
+                } 
+                // If it's an object/array but NO frequency, IT IS A FOLDER/HEADING
+                else if (val && typeof val === 'object') {
+                    folders.push(entry);
+                }
             });
-            parentEl.appendChild(grid);
-        }
 
-        function toggleAccordion(header) {
-            header.classList.toggle("active");
-            const panel = header.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-                // Propagate height to parent
-                let parentPanel = panel.parentElement.closest('.accordion-panel');
-                if (parentPanel) parentPanel.style.maxHeight = (parentPanel.scrollHeight + panel.scrollHeight) + "px";
+            // 3. Render Topics First (if any)
+            if (topics.length > 0) {
+                // Sort High to Low
+                topics.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
+                
+                const listDiv = document.createElement('div');
+                listDiv.className = 'topic-list';
+                
+                topics.forEach(t => {
+                    listDiv.appendChild(createCard(t));
+                });
+                container.appendChild(listDiv);
             }
+
+            // 4. Render Folders (Accordions)
+            folders.forEach(f => {
+                const { key, val } = f;
+                // Ignore numeric keys unless meaningful. Use nice formatting.
+                let title = isNaN(key) ? key.replace(/_/g, ' ') : `Section ${parseInt(key)+1}`;
+                
+                const catBlock = document.createElement('div');
+                catBlock.className = 'category-block';
+                const uniqueId = `${pathId}-${key.toString().replace(/\W/g,'')}`;
+
+                catBlock.innerHTML = `
+                    <div class="category-header" onclick="toggleCat(this)">
+                        <span class="cat-title">${title}</span>
+                        <i class="fas fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="category-content" id="${uniqueId}"></div>
+                `;
+                container.appendChild(catBlock);
+                
+                // Recurse!
+                parseAndRender(val, catBlock.querySelector('.category-content'), uniqueId);
+            });
         }
 
-        function toggleTopic(e, card, storageKey) {
-            const checkbox = card.querySelector('.custom-checkbox');
-            const isNowChecked = !checkbox.classList.contains('checked');
+        function createCard(t) {
+            const freq = t.frequency || 0;
+            // Determine yield level
+            let yieldLvl = 'low';
+            if (freq >= 5) yieldLvl = 'high';
+            else if (freq >= 3) yieldLvl = 'mid';
 
-            if (isNowChecked) {
-                checkbox.classList.add('checked');
-                checkbox.innerHTML = '<i class="fas fa-check"></i>';
-                card.classList.add('completed');
-                localStorage.setItem(storageKey, 'true');
-                if(navigator.vibrate) navigator.vibrate(50);
-            } else {
-                checkbox.classList.remove('checked');
-                checkbox.innerHTML = '';
-                card.classList.remove('completed');
-                localStorage.removeItem(storageKey);
-            }
+            // Check Storage
+            const storeKey = `medtrix_check_${currentSubject}_${t.name.replace(/\W/g,'')}`;
+            const isDone = localStorage.getItem(storeKey) === 'true';
+
+            const card = document.createElement('div');
+            card.className = `topic-card ${isDone ? 'done' : ''}`;
+            card.setAttribute('data-yield', yieldLvl);
+            
+            // Click Handler
+            card.onclick = (e) => {
+                // Toggle UI
+                const box = card.querySelector('.check-box');
+                const wasChecked = box.classList.contains('checked');
+                
+                if (!wasChecked) {
+                    box.classList.add('checked');
+                    box.innerHTML = '<i class="fas fa-check" style="font-size:12px"></i>';
+                    card.classList.add('done');
+                    localStorage.setItem(storeKey, 'true');
+                    if(navigator.vibrate) navigator.vibrate(30);
+                } else {
+                    box.classList.remove('checked');
+                    box.innerHTML = '';
+                    card.classList.remove('done');
+                    localStorage.removeItem(storeKey);
+                }
+            };
+
+            card.innerHTML = `
+                <div class="check-box ${isDone ? 'checked' : ''}">
+                    ${isDone ? '<i class="fas fa-check" style="font-size:12px"></i>' : ''}
+                </div>
+                <div class="t-content">
+                    <div class="t-header">
+                        <span class="t-title">${t.name}</span>
+                        <span class="t-freq">${freq}x</span>
+                    </div>
+                    <div class="t-desc">${t.details || ''}</div>
+                </div>
+            `;
+            return card;
         }
+
+        function toggleCat(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
     </script>
 </body>
 </html>
