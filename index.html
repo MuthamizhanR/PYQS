@@ -2,260 +2,403 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PYQ Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MEDTRIX | PYQ Tracker</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="config.js"></script>
+    <script src="medtrix_core.js"></script>
+
     <style>
+        /* --- 1. COLOR PALETTE (Inherited from Dashboard) --- */
         :root {
-            --primary: #2563eb;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg: #f3f4f6;
+            --bg-gradient: radial-gradient(circle at 0% 0%, #e0f2fe, #f3f4f6);
+            --glass: rgba(255, 255, 255, 0.65);
+            --glass-solid: rgba(255, 255, 255, 0.95);
+            --border: 1px solid rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 30px rgba(31, 38, 135, 0.08);
+            --text: #1f2937;
+            --subtext: #6b7280;
+            --accent: #2563eb;
+            --high-yield: #ef4444; /* Red for high freq */
+            --mid-yield: #2563eb;  /* Blue for mid freq */
+            --low-yield: #10b981;  /* Green for low freq */
         }
 
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #1e293b, #0f172a);
+            --glass: rgba(30, 41, 59, 0.70);
+            --glass-solid: rgba(30, 41, 59, 0.95);
+            --border: 1px solid rgba(255, 255, 255, 0.08);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            --text: #f1f5f9;
+            --subtext: #94a3b8;
+            --accent: #38bdf8;
+            --high-yield: #f87171;
+            --mid-yield: #60a5fa;
+            --low-yield: #34d399;
+        }
+
+        /* --- 2. GLOBAL RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg); background-image: var(--bg-gradient);
+            background-attachment: fixed; color: var(--text);
+            min-height: 100vh; padding: 20px;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        header {
-            max-width: 1200px;
-            margin: 0 auto 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
+        /* --- 3. HEADER & NAV --- */
+        header { text-align: center; margin: 20px 0 30px; }
 
         h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            color: var(--primary);
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--text), var(--accent));
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
+        .tab-btn {
+            background: var(--glass);
+            border: var(--border);
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
-        .subject-section {
-            margin-bottom: 50px;
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+            border-color: var(--accent);
         }
 
-        .subject-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            padding-left: 10px;
-            border-left: 4px solid var(--primary);
+        .tab-btn:hover:not(.active) {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* --- 4. CONTENT AREA --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+        }
+
+        /* Subject Section Headers */
+        .section-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin: 40px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid var(--accent);
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        .sub-header {
+            font-size: 1.1rem;
+            margin: 20px 0 15px 5px;
+            color: var(--subtext);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 1px;
         }
 
+        /* Topic Grid */
         .topic-grid {
-            display: grid;
+            display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            margin-bottom: 30px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+        /* Topic Card */
+        .topic-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: var(--border);
+            border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .topic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
         }
 
-        .card-header {
+        /* Card Borders based on Frequency */
+        .yield-high { border-left: 4px solid var(--high-yield); }
+        .yield-mid { border-left: 4px solid var(--mid-yield); }
+        .yield-low { border-left: 4px solid var(--low-yield); }
+
+        .card-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .topic-name {
+        .topic-title {
             font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.3;
+            color: var(--text);
+            padding-right: 10px;
         }
 
-        .badge {
-            background-color: #dbeafe;
-            color: #1e40af;
-            padding: 4px 8px;
+        .freq-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            padding: 4px 10px;
             border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: bold;
             white-space: nowrap;
-        }
-
-        .badge.high-yield {
-            background-color: #fee2e2;
-            color: #991b1b;
-        }
-
-        .details {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            flex-grow: 1;
+            background: rgba(0,0,0,0.05);
+            color: var(--text);
         }
         
-        .error-msg {
-            color: #ef4444;
-            padding: 20px;
-            background: #fee2e2;
-            border-radius: 8px;
+        .yield-high .freq-badge { background: rgba(239, 68, 68, 0.15); color: var(--high-yield); }
+        .yield-mid .freq-badge { background: rgba(37, 99, 235, 0.15); color: var(--mid-yield); }
+
+        .topic-details {
+            font-size: 0.85rem;
+            color: var(--subtext);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 50px;
+            color: var(--subtext);
+            font-size: 1.2rem;
+        }
+
+        /* --- UTILS --- */
+        .ctrl-btn {
+            position: fixed; 
+            width: 45px; height: 45px; border-radius: 50%;
+            background: var(--glass-solid); border: var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; cursor: pointer; color: var(--text);
+            box-shadow: var(--shadow); backdrop-filter: blur(10px);
+            z-index: 100; text-decoration: none;
+        }
+        .home-btn { top: 20px; left: 20px; }
+        .theme-btn { top: 20px; right: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-tabs { gap: 8px; }
+            .tab-btn { padding: 8px 12px; font-size: 0.75rem; }
+            .topic-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <a href="index.html" class="ctrl-btn home-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="ctrl-btn theme-btn" onclick="toggleAppTheme()">🌓</div>
+
     <header>
-        <h1>Medical PYQ Yield Tracker</h1>
+        <h1>PYQ ANALYZER</h1>
+        <p style="color:var(--subtext); font-size:0.9rem;">High Yield Topic Frequency</p>
     </header>
 
-    <main id="content-area">
-        <p style="color: var(--text-muted);">Loading data...</p>
-    </main>
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="loadSubject('og', this)">Obstetrics & Gyn</button>
+        <button class="tab-btn" onclick="loadSubject('surgery', this)">Surgery</button>
+        <button class="tab-btn" onclick="loadSubject('medicine', this)">Medicine</button>
+        <button class="tab-btn" onclick="loadSubject('paediatrics', this)">Paediatrics</button>
+    </div>
+
+    <div id="content-area" class="container">
+        </div>
 
     <script>
-        // Define the subjects and their corresponding file names
-        const subjects = [
-            { name: "Obstetrics & Gynaecology (OG)", file: "og.json" },
-            { name: "Surgery", file: "surgery.json" },
-            { name: "Medicine", file: "medicine.json" },
-            { name: "Paediatrics", file: "paediatrics.json" }
-        ];
+        // --- THEME LOGIC (Matches your Dashboard) ---
+        function toggleAppTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('medtrix-theme', next);
+        }
+        // Load saved theme
+        (function() {
+            const saved = localStorage.getItem('medtrix-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+
+        // --- PYQ ENGINE ---
+
+        // Config
+        const FILES = {
+            'og': 'og.json',
+            'surgery': 'surgery.json',
+            'medicine': 'medicine.json',
+            'paediatrics': 'paediatrics.json'
+        };
 
         const contentArea = document.getElementById('content-area');
 
-        // Helper: Determine if a key is just a numeric index (e.g., "0", "1", "15")
-        const isNumericKey = (key) => !isNaN(parseInt(key)) && isFinite(key);
+        // Initial Load
+        loadSubject('og', document.querySelector('.tab-btn'));
+
+        async function loadSubject(subjectKey, btnElement) {
+            // Update Tab UI
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+
+            // Show Loading
+            contentArea.innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Analyzing Frequency Data...</div>';
+
+            try {
+                const response = await fetch(FILES[subjectKey]);
+                if (!response.ok) throw new Error("File not found");
+                const data = await response.json();
+                
+                contentArea.innerHTML = ''; // Clear loading
+                renderRecursive(data, 0); // Start rendering
+            } catch (error) {
+                console.error(error);
+                contentArea.innerHTML = `
+                    <div class="loading-state" style="color: var(--high-yield)">
+                        <i class="fas fa-exclamation-triangle"></i><br>
+                        Could not load ${subjectKey}.json<br>
+                        <span style="font-size:0.8rem">Ensure file exists in repo.</span>
+                    </div>`;
+            }
+        }
 
         /**
-         * Normalizes JSON data into a standard array format:
-         * [ { topic: "Topic Name", frequency: 5, details: "..." }, ... ]
+         * Recursively parses the JSON.
+         * Logic:
+         * 1. If it finds a list of "Topics" (objects with 'frequency'), sort and render them.
+         * 2. If it finds a Container (Object without frequency), render Heading and recurse.
          */
-        function normalizeData(data) {
-            let normalized = [];
-
-            // Case 1: Data is an Array
+        function renderRecursive(data, depth) {
+            // 1. Normalize data (handle array indices vs object keys)
+            let entries = [];
+            
             if (Array.isArray(data)) {
-                // If the array items contain the topic name inside them
-                normalized = data.map(item => {
-                    // Check if 'topic' key exists, if not, try to find a key that isn't freq/details
-                    // Assuming structure is like the snippet but inside an array
-                    return item; 
-                });
-            } 
-            // Case 2: Data is an Object
-            else if (typeof data === 'object' && data !== null) {
-                const keys = Object.keys(data);
+                entries = data.map((val, index) => ({ key: index, value: val }));
+            } else if (typeof data === 'object' && data !== null) {
+                entries = Object.entries(data).map(([k, v]) => ({ key: k, value: v }));
+            } else {
+                return; // Primitive value, ignore
+            }
+
+            // 2. CHECK: Is this level strictly a list of Topics?
+            // We assume it's a topic list if the values have a 'frequency' property.
+            const isTopicList = entries.some(e => e.value && typeof e.value === 'object' && 'frequency' in e.value);
+
+            if (isTopicList) {
+                // --- RENDER TOPICS (SORTED) ---
                 
-                keys.forEach(key => {
-                    const value = data[key];
+                // Filter out non-topic garbage if any, and normalize
+                let topics = entries.filter(e => e.value && typeof e.value === 'object' && 'frequency' in e.value)
+                                    .map(e => {
+                                        // If the key is a name (not a number), use it as topic name
+                                        // Unless the object has a specific 'topic' name inside
+                                        let name = isNaN(parseInt(e.key)) ? e.key : (e.value.topic || e.value.name || "Untitled Topic");
+                                        return { 
+                                            name: name, 
+                                            ...e.value 
+                                        };
+                                    });
+
+                // SORTING LOGIC: Highest Frequency First
+                topics.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
+
+                renderTopicGrid(topics);
+
+            } else {
+                // --- RENDER HEADINGS (RECURSIVE) ---
+                // Keep original order of headings
+                entries.forEach(entry => {
+                    const { key, value } = entry;
                     
-                    // Ignore strict array indices if they are just wrapper keys "0": {...}
-                    // We assume the value inside contains the data
-                    if (isNumericKey(key) && typeof value === 'object') {
-                        // If the object inside doesn't have a name, we might be stuck, 
-                        // but usually in this case the structure matches the snippet.
-                        // Let's try to grab the Name from the object if it exists, otherwise use key.
-                        normalized.push({
-                            topic: value.topic || value.name || `Topic ${key}`, 
-                            ...value
-                        });
-                    } 
-                    // Case 3: Key is the Topic Name (The snippet format)
-                    else {
-                        normalized.push({
-                            topic: key,
-                            ...value
-                        });
+                    // Skip purely numeric array indices unless they contain deep data
+                    // But usually, headings are named keys.
+                    if (typeof value === 'object' && value !== null) {
+                        
+                        // Create Heading
+                        if (isNaN(parseInt(key))) { // Only print key if it's text (not "0", "1")
+                            const header = document.createElement(depth === 0 ? 'div' : 'div');
+                            header.className = depth === 0 ? 'section-header' : 'sub-header';
+                            header.textContent = key;
+                            contentArea.appendChild(header);
+                        }
+                        
+                        // Recurse
+                        renderRecursive(value, depth + 1);
                     }
                 });
             }
-            return normalized;
         }
 
-        async function loadAndRender() {
-            contentArea.innerHTML = ''; // Clear loading message
+        function renderTopicGrid(topics) {
+            const grid = document.createElement('div');
+            grid.className = 'topic-grid';
 
-            for (const subject of subjects) {
-                const section = document.createElement('section');
-                section.className = 'subject-section';
+            topics.forEach(t => {
+                const freq = t.frequency || 0;
                 
-                const title = document.createElement('h2');
-                title.className = 'subject-title';
-                title.textContent = subject.name;
-                section.appendChild(title);
-
-                const grid = document.createElement('div');
-                grid.className = 'topic-grid';
-
-                try {
-                    // Fetch the JSON file
-                    const response = await fetch(subject.file);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const jsonData = await response.json();
-
-                    // 1. Normalize Structure
-                    const items = normalizeData(jsonData);
-
-                    // 2. Sort by Frequency (High to Low)
-                    items.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
-
-                    // 3. Render Cards
-                    if (items.length === 0) {
-                        grid.innerHTML = '<p style="color:var(--text-muted)">No data found.</p>';
-                    } else {
-                        items.forEach(item => {
-                            const freq = item.frequency || 0;
-                            const isHighYield = freq >= 5; // Visual logic for styling
-
-                            const card = document.createElement('article');
-                            card.className = 'card';
-                            card.innerHTML = `
-                                <div class="card-header">
-                                    <span class="topic-name">${item.topic}</span>
-                                    <span class="badge ${isHighYield ? 'high-yield' : ''}">
-                                        Freq: ${freq}
-                                    </span>
-                                </div>
-                                <div class="details">
-                                    ${item.details || 'No details provided.'}
-                                </div>
-                            `;
-                            grid.appendChild(card);
-                        });
-                    }
-                    section.appendChild(grid);
-                } catch (e) {
-                    console.error(`Error loading ${subject.name}:`, e);
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'error-msg';
-                    errorDiv.textContent = `Could not load data for ${subject.name}. Ensure ${subject.file} is in the folder and you are running a local server.`;
-                    section.appendChild(errorDiv);
+                // Determine Visual Class
+                let yieldClass = 'yield-low';
+                let icon = '';
+                if (freq >= 5) { 
+                    yieldClass = 'yield-high'; 
+                    icon = '<i class="fas fa-fire" style="margin-right:5px"></i>'; 
+                } else if (freq >= 3) { 
+                    yieldClass = 'yield-mid'; 
                 }
 
-                contentArea.appendChild(section);
-            }
-        }
+                const card = document.createElement('div');
+                card.className = `topic-card ${yieldClass}`;
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="topic-title">${t.name}</div>
+                        <div class="freq-badge">
+                            ${icon}Freq: ${freq}
+                        </div>
+                    </div>
+                    <div class="topic-details">
+                        ${t.details || 'No details available.'}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
 
-        // Initialize
-        loadAndRender();
+            contentArea.appendChild(grid);
+        }
 
     </script>
 </body>
