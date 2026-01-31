@@ -1,0 +1,228 @@
+{
+  "PAEDIATRICS": {
+    "long_essays": {
+      "neonatology": {
+        "Neonatal Jaundice / Hyperbilirubinemia": {
+          "frequency": 8,
+          "details": "Pathological vs physiological, causes, Rh/ABO incompatibility, clinical assessment, complications (Kernicterus), management (Phototherapy, Exchange transfusion)."
+        },
+        "Neonatal Sepsis": {
+          "frequency": 7,
+          "details": "Early vs Late onset, risk factors, etiology, clinical features, sepsis screen, management, prevention."
+        },
+        "Neonatal Resuscitation / Asphyxia": {
+          "frequency": 3,
+          "details": "Pathophysiology, Apgar score, steps of resuscitation (TABC), post-resuscitation care, Hypoxic Ischemic Encephalopathy (HIE)."
+        },
+        "Low Birth Weight (LBW) / Preterm Care": {
+          "frequency": 4,
+          "details": "Definition, problems of prematurity, feeding of LBW babies, Kangaroo Mother Care (KMC), prevention of hypothermia."
+        },
+        "Respiratory Distress in Newborn": {
+          "frequency": 2,
+          "details": "Hyaline Membrane Disease (HMD), Meconium Aspiration Syndrome, differential diagnosis, management (Surfactant/CPAP)."
+        },
+        "Umbilical Sepsis / Omphalitis": {
+          "frequency": 1,
+          "details": "Discharge from umbilicus, lethargy, differential diagnosis, management."
+        }
+      },
+      "infectious_diseases": {
+        "Meningitis (Pyogenic / Tuberculous)": {
+          "frequency": 7,
+          "details": "Etiology, clinical features (neck rigidity/seizures), CSF analysis findings, complications, management."
+        },
+        "Acute Rheumatic Fever": {
+          "frequency": 4,
+          "details": "Revised Jones criteria, clinical features (carditis, chorea), diagnosis, treatment, secondary prophylaxis."
+        },
+        "Dengue Fever": {
+          "frequency": 3,
+          "details": "WHO classification, Dengue Shock Syndrome (DSS) management, fluid therapy, warning signs."
+        },
+        "Tuberculosis": {
+          "frequency": 3,
+          "details": "Pulmonary TB, Neuro-tuberculosis, diagnosis (Mantoux/CBNAAT), DOTS regimen in children."
+        },
+        "Tetanus": {
+          "frequency": 1,
+          "details": "Clinical features, management, prevention."
+        }
+      },
+      "nutrition_and_growth": {
+        "Protein Energy Malnutrition (PEM) / SAM": {
+          "frequency": 7,
+          "details": "Severe Acute Malnutrition (SAM) definition, WHO classification, clinical features (Kwashiorkor vs Marasmus), 10 steps of management, complications."
+        },
+        "Breastfeeding": {
+          "frequency": 3,
+          "details": "Benefits, physiology, composition, Baby Friendly Hospital Initiative (BFHI), problems."
+        }
+      },
+      "systemic_paediatrics": {
+        "Nephrotic Syndrome": {
+          "frequency": 5,
+          "details": "Definition, clinical features (edema), complications, management of first episode, steroid therapy."
+        },
+        "Acute Glomerulonephritis (AGN)": {
+          "frequency": 4,
+          "details": "Post-streptococcal etiology, clinical triad (hematuria, hypertension, edema), complications, management."
+        },
+        "Congenital Heart Disease (CHD)": {
+          "frequency": 4,
+          "details": "Cyanotic (TOF) vs Acyanotic (VSD, PDA), hemodynamics, clinical presentation, management of cyanotic spells."
+        },
+        "Seizure Disorder / Status Epilepticus": {
+          "frequency": 4,
+          "details": "Approach to a child with convulsions, management of status epilepticus, febrile seizures."
+        },
+        "Pneumonia": {
+          "frequency": 3,
+          "details": "WHO/IMNCI classification, community-acquired pneumonia, management guidelines."
+        },
+        "Congenital Hypothyroidism": {
+          "frequency": 3,
+          "details": "Clinical features of untreated case, newborn screening, diagnosis, treatment."
+        }
+      },
+      "miscellaneous": {
+        "Snake Bite": {
+          "frequency": 2,
+          "details": "Neurotoxic (ptosis) vs Haemotoxic, ASV administration, management."
+        },
+        "Poisoning": {
+          "frequency": 2,
+          "details": "Kerosene aspiration, Organophosphorus poisoning; clinical features and management."
+        }
+      }
+    },
+    "short_notes": {
+      "neonatology": {
+        "Kangaroo Mother Care (KMC)": {
+          "frequency": 5,
+          "details": "Components, benefits, indications, criteria for discharge."
+        },
+        "Neonatal Sepsis Screen": {
+          "frequency": 4,
+          "details": "Components (CRP, Micro-ESR, ANC, etc.) and interpretation."
+        },
+        "Birth Injuries": {
+          "frequency": 3,
+          "details": "Cephalhematoma, Caput succedaneum, Erb's palsy."
+        },
+        "Neonatal Reflexes": {
+          "frequency": 2,
+          "details": "Moro reflex, rooting, grasp."
+        },
+        "Physiological Jaundice": {
+          "frequency": 2,
+          "details": "Characteristics, differentiation from pathological."
+        }
+      },
+      "infectious_diseases": {
+        "Vaccines / Immunization": {
+          "frequency": 8,
+          "details": "National Immunization Schedule, DPT, MMR, BCG, Pentavalent, Rotavirus, AEFI."
+        },
+        "Tuberculosis Diagnosis/Prevention": {
+          "frequency": 5,
+          "details": "Mantoux test interpretation, chemoprophylaxis, CSF in TBM."
+        },
+        "Malaria": {
+          "frequency": 4,
+          "details": "Cerebral malaria, peripheral smear, treatment."
+        },
+        "Viral Infections": {
+          "frequency": 4,
+          "details": "Measles complications, Mumps, Varicella, HIV diagnosis."
+        },
+        "Diphtheria / Pertussis": {
+          "frequency": 2,
+          "details": "Prevention, clinical features."
+        }
+      },
+      "nutrition_and_deficiencies": {
+        "Vitamin A Deficiency": {
+          "frequency": 5,
+          "details": "Xerophthalmia stages, prophylaxis schedule."
+        },
+        "Rickets / Vitamin D": {
+          "frequency": 5,
+          "details": "Clinical signs (rosary, widening), biochemical changes, management."
+        },
+        "Iron Deficiency Anaemia": {
+          "frequency": 4,
+          "details": "Diagnosis, dietary advice, iron therapy."
+        },
+        "Breastfeeding": {
+          "frequency": 4,
+          "details": "Exclusive breastfeeding benefits, composition."
+        },
+        "Growth Monitoring": {
+          "frequency": 3,
+          "details": "Growth charts, factors affecting growth."
+        }
+      },
+      "systemic_disorders": {
+        "Cardiology": {
+          "frequency": 6,
+          "details": "PDA (hemodynamics/complications), VSD, ASD, Tetralogy of Fallot (cyanotic spells), CCF."
+        },
+        "Respiratory": {
+          "frequency": 5,
+          "details": "Bronchiolitis, Foreign body aspiration, Croup, Empyema."
+        },
+        "Hematology": {
+          "frequency": 5,
+          "details": "Thalassemia, ITP, Sickle cell anemia treatment."
+        },
+        "Gastroenterology": {
+          "frequency": 5,
+          "details": "Portal hypertension diagnosis, Diarrhea (ORS/Zinc), Hepatitis A."
+        },
+        "Neurology": {
+          "frequency": 4,
+          "details": "Febrile convulsions, Hydrocephalus, Cerebral Palsy, GBS."
+        },
+        "Endocrinology": {
+          "frequency": 4,
+          "details": "Short stature causes, Hypothyroidism features, DKA."
+        }
+      },
+      "genetics_and_development": {
+        "Down Syndrome (Trisomy 21)": {
+          "frequency": 4,
+          "details": "Clinical features, karyotype, associated anomalies."
+        },
+        "Developmental Milestones": {
+          "frequency": 3,
+          "details": "Social milestones, gross motor, fine motor in first 5 years."
+        },
+        "Turner Syndrome": {
+          "frequency": 1,
+          "details": "Clinical features, karyotype."
+        }
+      },
+      "emergencies_and_poisoning": {
+        "Poisoning": {
+          "frequency": 3,
+          "details": "Kerosene aspiration, Organophosphorus poisoning."
+        },
+        "Shock": {
+          "frequency": 2,
+          "details": "Anaphylaxis, Hypovolemic shock."
+        }
+      },
+      "miscellaneous": {
+        "IMNCI": {
+          "frequency": 3,
+          "details": "Principles, color coding, case management."
+        },
+        "Rheumatic Fever Prevention": {
+          "frequency": 2,
+          "details": "Primary and secondary prophylaxis."
+        }
+      }
+    }
+  }
+}
