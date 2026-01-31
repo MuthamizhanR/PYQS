@@ -12,392 +12,416 @@
     <script src="medtrix_core.js"></script>
 
     <style>
-        /* --- 1. COLOR PALETTE (Inherited from Dashboard) --- */
+        /* --- 1. THEME VARIABLES --- */
         :root {
             --bg: #f3f4f6;
             --bg-gradient: radial-gradient(circle at 0% 0%, #e0f2fe, #f3f4f6);
-            --glass: rgba(255, 255, 255, 0.65);
-            --glass-solid: rgba(255, 255, 255, 0.95);
+            --glass: rgba(255, 255, 255, 0.75);
+            --glass-hover: rgba(255, 255, 255, 0.9);
             --border: 1px solid rgba(255, 255, 255, 0.9);
-            --shadow: 0 10px 30px rgba(31, 38, 135, 0.08);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             --text: #1f2937;
             --subtext: #6b7280;
             --accent: #2563eb;
-            --high-yield: #ef4444; /* Red for high freq */
-            --mid-yield: #2563eb;  /* Blue for mid freq */
-            --low-yield: #10b981;  /* Green for low freq */
+            --success: #10b981;
+            --high-yield: #ef4444; 
         }
 
         [data-theme="dark"] {
             --bg: #0f172a;
             --bg-gradient: radial-gradient(circle at 50% 0%, #1e293b, #0f172a);
-            --glass: rgba(30, 41, 59, 0.70);
-            --glass-solid: rgba(30, 41, 59, 0.95);
-            --border: 1px solid rgba(255, 255, 255, 0.08);
+            --glass: rgba(30, 41, 59, 0.8);
+            --glass-hover: rgba(40, 50, 75, 0.9);
+            --border: 1px solid rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             --text: #f1f5f9;
             --subtext: #94a3b8;
             --accent: #38bdf8;
             --high-yield: #f87171;
-            --mid-yield: #60a5fa;
-            --low-yield: #34d399;
         }
 
-        /* --- 2. GLOBAL RESET --- */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg); background-image: var(--bg-gradient);
             background-attachment: fixed; color: var(--text);
-            min-height: 100vh; padding: 20px;
-            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh; padding: 15px;
+            padding-bottom: 80px; /* Space for footer/thumb */
+            transition: background 0.3s ease;
         }
 
-        /* --- 3. HEADER & NAV --- */
-        header { text-align: center; margin: 20px 0 30px; }
-
+        /* --- 2. HEADER & NAV --- */
+        header { text-align: center; margin: 10px 0 20px; }
         h1 {
-            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 800;
+            font-family: 'Orbitron', sans-serif; font-size: 1.8rem;
             background: linear-gradient(135deg, var(--text), var(--accent));
             background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
+        }
+
+        /* Sticky Nav Tabs */
+        .nav-container {
+            position: sticky; top: 10px; z-index: 100;
+            margin-bottom: 25px;
+            display: flex; justify-content: center;
         }
         
-        /* Navigation Tabs */
         .nav-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            display: flex; gap: 8px;
+            background: var(--glass); backdrop-filter: blur(12px);
+            padding: 8px; border-radius: 50px;
+            border: var(--border); box-shadow: var(--shadow);
+            overflow-x: auto; max-width: 100%;
         }
 
         .tab-btn {
-            background: var(--glass);
-            border: var(--border);
-            color: var(--text);
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            background: transparent; border: none;
+            color: var(--subtext); padding: 8px 16px;
+            border-radius: 25px; cursor: pointer;
+            font-family: 'Orbitron', sans-serif; font-size: 0.75rem;
+            white-space: nowrap; transition: 0.3s;
         }
 
         .tab-btn.active {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
-            border-color: var(--accent);
+            background: var(--accent); color: white;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
         }
 
-        .tab-btn:hover:not(.active) {
-            transform: translateY(-2px);
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* --- 4. CONTENT AREA --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto 60px;
-        }
-
-        /* Subject Section Headers */
-        .section-header {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            margin: 40px 0 20px 0;
-            padding-left: 15px;
-            border-left: 4px solid var(--accent);
-            color: var(--text);
-            opacity: 0.9;
-        }
-
-        .sub-header {
-            font-size: 1.1rem;
-            margin: 20px 0 15px 5px;
-            color: var(--subtext);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Topic Grid */
-        .topic-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        /* Topic Card */
-        .topic-card {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border: var(--border);
-            border-radius: 16px;
-            padding: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .topic-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-        }
-
-        /* Card Borders based on Frequency */
-        .yield-high { border-left: 4px solid var(--high-yield); }
-        .yield-mid { border-left: 4px solid var(--mid-yield); }
-        .yield-low { border-left: 4px solid var(--low-yield); }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        /* --- 3. ACCORDION SYSTEM --- */
+        .accordion-item {
             margin-bottom: 12px;
-        }
-
-        .topic-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            line-height: 1.3;
-            color: var(--text);
-            padding-right: 10px;
-        }
-
-        .freq-badge {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            padding: 4px 10px;
             border-radius: 12px;
-            font-weight: bold;
-            white-space: nowrap;
-            background: rgba(0,0,0,0.05);
-            color: var(--text);
+            overflow: hidden;
+            border: var(--border);
+            background: var(--glass);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: 0.3s;
+        }
+
+        /* Accordion Header */
+        .accordion-header {
+            width: 100%;
+            padding: 16px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: transparent; border: none;
+            color: var(--text); font-family: 'Poppins', sans-serif;
+            font-weight: 600; font-size: 1rem;
+            text-align: left; cursor: pointer;
         }
         
-        .yield-high .freq-badge { background: rgba(239, 68, 68, 0.15); color: var(--high-yield); }
-        .yield-mid .freq-badge { background: rgba(37, 99, 235, 0.15); color: var(--mid-yield); }
+        .accordion-header:hover { background: rgba(0,0,0,0.02); }
+        .accordion-header.active { background: rgba(37, 99, 235, 0.05); border-bottom: 1px solid var(--border); }
+        
+        .header-info { display: flex; flex-direction: column; }
+        .progress-text { font-size: 0.7rem; color: var(--subtext); font-weight: 400; margin-top: 2px; }
+        
+        .chevron { transition: transform 0.3s ease; color: var(--subtext); }
+        .accordion-header.active .chevron { transform: rotate(180deg); color: var(--accent); }
 
-        .topic-details {
-            font-size: 0.85rem;
-            color: var(--subtext);
-            line-height: 1.6;
-            flex-grow: 1;
+        /* Accordion Panel */
+        .accordion-panel {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0,0,0,0.01);
+        }
+        .accordion-content { padding: 15px; }
+
+        /* Nested Accordion Styling (for sub-headings) */
+        .accordion-panel .accordion-item {
+            border: none; background: rgba(0,0,0,0.03);
+            margin-bottom: 8px;
+        }
+        .accordion-panel .accordion-header { font-size: 0.9rem; padding: 12px 15px; }
+
+        /* --- 4. TOPIC CARDS & CHECKBOXES --- */
+        .topic-grid {
+            display: grid; grid-template-columns: 1fr; gap: 12px;
+        }
+        @media(min-width: 700px) { .topic-grid { grid-template-columns: 1fr 1fr; } }
+
+        .topic-card {
+            display: flex; gap: 15px;
+            background: var(--glass); border: var(--border);
+            padding: 15px; border-radius: 12px;
+            transition: all 0.2s; position: relative;
         }
 
-        .loading-state {
-            text-align: center;
-            padding: 50px;
-            color: var(--subtext);
-            font-size: 1.2rem;
+        /* High Yield Indicator */
+        .topic-card.high-yield { border-left: 4px solid var(--high-yield); }
+        .topic-card.mid-yield { border-left: 4px solid var(--accent); }
+        .topic-card.low-yield { border-left: 4px solid var(--success); }
+
+        /* Completed State */
+        .topic-card.completed {
+            opacity: 0.6;
+            background: rgba(0,0,0,0.02);
+            border-color: transparent;
         }
+        .topic-card.completed .topic-title { text-decoration: line-through; color: var(--subtext); }
+
+        /* Checkbox Custom UI */
+        .checkbox-wrapper {
+            flex-shrink: 0; display: flex; align-items: flex-start; padding-top: 2px;
+        }
+        .custom-checkbox {
+            width: 24px; height: 24px;
+            border: 2px solid var(--subtext); border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.2s; color: white; font-size: 14px;
+        }
+        
+        /* Checkbox interactions handled via JS class */
+        .custom-checkbox.checked {
+            background: var(--success); border-color: var(--success);
+        }
+
+        .card-content { flex-grow: 1; }
+        
+        .topic-header-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .topic-title { font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+        .freq-tag { 
+            font-size: 0.7rem; padding: 2px 8px; border-radius: 8px; 
+            font-family: 'Orbitron'; background: rgba(0,0,0,0.05); font-weight: bold;
+            height: fit-content; white-space: nowrap;
+        }
+        .high-yield .freq-tag { color: var(--high-yield); background: rgba(239, 68, 68, 0.1); }
+
+        .topic-details { font-size: 0.8rem; color: var(--subtext); margin-top: 4px; line-height: 1.4; }
 
         /* --- UTILS --- */
         .ctrl-btn {
-            position: fixed; 
-            width: 45px; height: 45px; border-radius: 50%;
-            background: var(--glass-solid); border: var(--border);
+            position: fixed; width: 45px; height: 45px; border-radius: 50%;
+            background: var(--glass); border: var(--border);
             display: flex; align-items: center; justify-content: center;
             font-size: 1.2rem; cursor: pointer; color: var(--text);
             box-shadow: var(--shadow); backdrop-filter: blur(10px);
-            z-index: 100; text-decoration: none;
+            z-index: 200; text-decoration: none;
         }
-        .home-btn { top: 20px; left: 20px; }
-        .theme-btn { top: 20px; right: 20px; }
+        .home-btn { bottom: 20px; left: 20px; }
+        .theme-btn { bottom: 20px; right: 20px; }
 
-        @media (max-width: 768px) {
-            .nav-tabs { gap: 8px; }
-            .tab-btn { padding: 8px 12px; font-size: 0.75rem; }
-            .topic-grid { grid-template-columns: 1fr; }
-        }
+        .loading-msg { text-align: center; padding: 40px; color: var(--subtext); }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="ctrl-btn home-btn"><i class="fas fa-arrow-left"></i></a>
+    <a href="index.html" class="ctrl-btn home-btn"><i class="fas fa-home"></i></a>
     <div class="ctrl-btn theme-btn" onclick="toggleAppTheme()">🌓</div>
 
     <header>
-        <h1>PYQ ANALYZER</h1>
-        <p style="color:var(--subtext); font-size:0.9rem;">High Yield Topic Frequency</p>
+        <h1>PYQ TRACKER</h1>
     </header>
 
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="loadSubject('og', this)">Obstetrics & Gyn</button>
-        <button class="tab-btn" onclick="loadSubject('surgery', this)">Surgery</button>
-        <button class="tab-btn" onclick="loadSubject('medicine', this)">Medicine</button>
-        <button class="tab-btn" onclick="loadSubject('paediatrics', this)">Paediatrics</button>
+    <div class="nav-container">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchSubject('og', this)">OG</button>
+            <button class="tab-btn" onclick="switchSubject('surgery', this)">Surgery</button>
+            <button class="tab-btn" onclick="switchSubject('medicine', this)">Medicine</button>
+            <button class="tab-btn" onclick="switchSubject('paediatrics', this)">Peds</button>
+        </div>
     </div>
 
-    <div id="content-area" class="container">
-        </div>
+    <div id="content-area" style="max-width: 800px; margin: 0 auto;"></div>
 
     <script>
-        // --- THEME LOGIC (Matches your Dashboard) ---
-        function toggleAppTheme() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('medtrix-theme', next);
-        }
-        // Load saved theme
-        (function() {
-            const saved = localStorage.getItem('medtrix-theme') || 'light';
-            document.documentElement.setAttribute('data-theme', saved);
-        })();
-
-        // --- PYQ ENGINE ---
-
-        // Config
+        // --- 1. CONFIG & STATE ---
         const FILES = {
             'og': 'og.json',
             'surgery': 'surgery.json',
             'medicine': 'medicine.json',
             'paediatrics': 'paediatrics.json'
         };
+        let currentSubject = 'og';
 
-        const contentArea = document.getElementById('content-area');
+        // --- 2. THEME LOGIC ---
+        function toggleAppTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('medtrix-theme', next);
+        }
+        (function() {
+            document.documentElement.setAttribute('data-theme', localStorage.getItem('medtrix-theme') || 'light');
+        })();
 
+        // --- 3. CORE LOGIC ---
+        
         // Initial Load
-        loadSubject('og', document.querySelector('.tab-btn'));
+        switchSubject('og', document.querySelector('.tab-btn'));
 
-        async function loadSubject(subjectKey, btnElement) {
-            // Update Tab UI
+        async function switchSubject(subjectKey, btn) {
+            currentSubject = subjectKey;
+            
+            // UI Update
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
-
-            // Show Loading
-            contentArea.innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Analyzing Frequency Data...</div>';
+            if(btn) btn.classList.add('active');
+            
+            const container = document.getElementById('content-area');
+            container.innerHTML = '<div class="loading-msg"><i class="fas fa-circle-notch fa-spin"></i> Loading Data...</div>';
 
             try {
                 const response = await fetch(FILES[subjectKey]);
-                if (!response.ok) throw new Error("File not found");
+                if(!response.ok) throw new Error("File missing");
                 const data = await response.json();
                 
-                contentArea.innerHTML = ''; // Clear loading
-                renderRecursive(data, 0); // Start rendering
-            } catch (error) {
-                console.error(error);
-                contentArea.innerHTML = `
-                    <div class="loading-state" style="color: var(--high-yield)">
-                        <i class="fas fa-exclamation-triangle"></i><br>
-                        Could not load ${subjectKey}.json<br>
-                        <span style="font-size:0.8rem">Ensure file exists in repo.</span>
-                    </div>`;
+                container.innerHTML = '';
+                // Start building the UI
+                buildRecursive(data, container, `root`);
+            } catch (e) {
+                container.innerHTML = `<div class="loading-msg" style="color:var(--high-yield)">Error loading ${subjectKey}.json</div>`;
+                console.error(e);
             }
         }
 
         /**
-         * Recursively parses the JSON.
-         * Logic:
-         * 1. If it finds a list of "Topics" (objects with 'frequency'), sort and render them.
-         * 2. If it finds a Container (Object without frequency), render Heading and recurse.
+         * Recursively builds Accordions or Topic Grids
+         * @param {Object} data - The current level of JSON
+         * @param {HTMLElement} parentEl - Where to append
+         * @param {String} pathID - Unique ID path for saving state logic
          */
-        function renderRecursive(data, depth) {
-            // 1. Normalize data (handle array indices vs object keys)
+        function buildRecursive(data, parentEl, pathID) {
+            // 1. Normalize data to array of entries
             let entries = [];
-            
             if (Array.isArray(data)) {
-                entries = data.map((val, index) => ({ key: index, value: val }));
+                entries = data.map((val, idx) => ({ key: idx, value: val }));
             } else if (typeof data === 'object' && data !== null) {
                 entries = Object.entries(data).map(([k, v]) => ({ key: k, value: v }));
+            } else { return; }
+
+            // 2. CHECK: Is this a "Topic List" (leaf node)?
+            // We assume it is if the items inside have a 'frequency' property
+            const isLeaf = entries.some(e => e.value && typeof e.value === 'object' && 'frequency' in e.value);
+
+            if (isLeaf) {
+                // --- RENDER GRID OF CARDS ---
+                renderTopicList(entries, parentEl);
             } else {
-                return; // Primitive value, ignore
-            }
-
-            // 2. CHECK: Is this level strictly a list of Topics?
-            // We assume it's a topic list if the values have a 'frequency' property.
-            const isTopicList = entries.some(e => e.value && typeof e.value === 'object' && 'frequency' in e.value);
-
-            if (isTopicList) {
-                // --- RENDER TOPICS (SORTED) ---
-                
-                // Filter out non-topic garbage if any, and normalize
-                let topics = entries.filter(e => e.value && typeof e.value === 'object' && 'frequency' in e.value)
-                                    .map(e => {
-                                        // If the key is a name (not a number), use it as topic name
-                                        // Unless the object has a specific 'topic' name inside
-                                        let name = isNaN(parseInt(e.key)) ? e.key : (e.value.topic || e.value.name || "Untitled Topic");
-                                        return { 
-                                            name: name, 
-                                            ...e.value 
-                                        };
-                                    });
-
-                // SORTING LOGIC: Highest Frequency First
-                topics.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
-
-                renderTopicGrid(topics);
-
-            } else {
-                // --- RENDER HEADINGS (RECURSIVE) ---
-                // Keep original order of headings
+                // --- RENDER ACCORDIONS (CATEGORIES) ---
                 entries.forEach(entry => {
                     const { key, value } = entry;
-                    
-                    // Skip purely numeric array indices unless they contain deep data
-                    // But usually, headings are named keys.
                     if (typeof value === 'object' && value !== null) {
+                        // Skip numeric keys if they are just array indices without meaning,
+                        // unless it's the only way to access data. 
+                        // Usually headings are named keys.
+                        let title = isNaN(parseInt(key)) ? key : `Section ${parseInt(key) + 1}`;
                         
-                        // Create Heading
-                        if (isNaN(parseInt(key))) { // Only print key if it's text (not "0", "1")
-                            const header = document.createElement(depth === 0 ? 'div' : 'div');
-                            header.className = depth === 0 ? 'section-header' : 'sub-header';
-                            header.textContent = key;
-                            contentArea.appendChild(header);
-                        }
+                        // Create Accordion HTML
+                        const accordionItem = document.createElement('div');
+                        accordionItem.className = 'accordion-item';
+
+                        const uniqueID = `${pathID}_${key.toString().replace(/\s+/g, '')}`;
+
+                        accordionItem.innerHTML = `
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="header-info">
+                                    <span>${title}</span>
+                                    </div>
+                                <i class="fas fa-chevron-down chevron"></i>
+                            </button>
+                            <div class="accordion-panel">
+                                <div class="accordion-content" id="${uniqueID}"></div>
+                            </div>
+                        `;
+
+                        parentEl.appendChild(accordionItem);
                         
-                        // Recurse
-                        renderRecursive(value, depth + 1);
+                        // Recurse into the content div
+                        const contentDiv = accordionItem.querySelector(`#${uniqueID}`);
+                        buildRecursive(value, contentDiv, uniqueID);
                     }
                 });
             }
         }
 
-        function renderTopicGrid(topics) {
+        function renderTopicList(entries, parentEl) {
             const grid = document.createElement('div');
             grid.className = 'topic-grid';
 
+            // Filter valid topics and normalize
+            let topics = entries
+                .filter(e => e.value && typeof e.value === 'object' && 'frequency' in e.value)
+                .map(e => {
+                    let name = isNaN(parseInt(e.key)) ? e.key : (e.value.topic || e.value.name || "Topic");
+                    return { name: name, ...e.value };
+                });
+
+            // Sort: High Frequency first
+            topics.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
+
             topics.forEach(t => {
                 const freq = t.frequency || 0;
-                
-                // Determine Visual Class
-                let yieldClass = 'yield-low';
-                let icon = '';
-                if (freq >= 5) { 
-                    yieldClass = 'yield-high'; 
-                    icon = '<i class="fas fa-fire" style="margin-right:5px"></i>'; 
-                } else if (freq >= 3) { 
-                    yieldClass = 'yield-mid'; 
-                }
+                let yieldClass = 'low-yield';
+                if (freq >= 5) yieldClass = 'high-yield';
+                else if (freq >= 3) yieldClass = 'mid-yield';
+
+                // Check Storage State
+                const storageKey = `medtrix_done_${currentSubject}_${t.name.replace(/\s+/g, '')}`;
+                const isChecked = localStorage.getItem(storageKey) === 'true';
 
                 const card = document.createElement('div');
-                card.className = `topic-card ${yieldClass}`;
+                card.className = `topic-card ${yieldClass} ${isChecked ? 'completed' : ''}`;
+                card.onclick = (e) => toggleTopic(e, card, storageKey); // Click anywhere to toggle
+
                 card.innerHTML = `
-                    <div class="card-top">
-                        <div class="topic-title">${t.name}</div>
-                        <div class="freq-badge">
-                            ${icon}Freq: ${freq}
+                    <div class="checkbox-wrapper">
+                        <div class="custom-checkbox ${isChecked ? 'checked' : ''}">
+                            ${isChecked ? '<i class="fas fa-check"></i>' : ''}
                         </div>
                     </div>
-                    <div class="topic-details">
-                        ${t.details || 'No details available.'}
+                    <div class="card-content">
+                        <div class="topic-header-row">
+                            <span class="topic-title">${t.name}</span>
+                            <span class="freq-tag">Freq: ${freq}</span>
+                        </div>
+                        <div class="topic-details">${t.details || ''}</div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
 
-            contentArea.appendChild(grid);
+            parentEl.appendChild(grid);
+        }
+
+        // --- 4. INTERACTION HANDLERS ---
+
+        function toggleAccordion(header) {
+            header.classList.toggle("active");
+            const panel = header.nextElementSibling;
+            
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                // Dynamic height calculation
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                
+                // Allow nested accordions to expand parent
+                let parentPanel = panel.parentElement.closest('.accordion-panel');
+                if (parentPanel) {
+                    parentPanel.style.maxHeight = (parentPanel.scrollHeight + panel.scrollHeight) + "px";
+                }
+            }
+        }
+
+        function toggleTopic(e, card, storageKey) {
+            // Prevent interaction if clicking links/details (optional safety)
+            // Toggle State
+            const checkbox = card.querySelector('.custom-checkbox');
+            const isNowChecked = !checkbox.classList.contains('checked');
+
+            if (isNowChecked) {
+                checkbox.classList.add('checked');
+                checkbox.innerHTML = '<i class="fas fa-check"></i>';
+                card.classList.add('completed');
+                localStorage.setItem(storageKey, 'true');
+                
+                // Optional: Trigger tiny vibration on mobile
+                if(navigator.vibrate) navigator.vibrate(50);
+            } else {
+                checkbox.classList.remove('checked');
+                checkbox.innerHTML = '';
+                card.classList.remove('completed');
+                localStorage.removeItem(storageKey);
+            }
         }
 
     </script>
