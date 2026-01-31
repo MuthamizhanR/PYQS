@@ -1,0 +1,627 @@
+{
+  "INTERNAL MEDICINE": {
+    "long_essays": {
+      "cardiology": [
+        {
+          "topic": "Acute Myocardial Infarction / ACS",
+          "frequency": 14,
+          "details": "Clinical features, diagnosis, complications, management; includes case presentations with breathlessness/crackles and ST changes"
+        },
+        {
+          "topic": "Infective Endocarditis",
+          "frequency": 5,
+          "details": "Etiology, pathology, clinical features (clubbing/murmurs), management"
+        },
+        {
+          "topic": "Congestive Heart Failure",
+          "frequency": 4,
+          "details": "Etiology, clinical features, JVP elevation, pharmacological treatment"
+        },
+        {
+          "topic": "Hypertension",
+          "frequency": 4,
+          "details": "Secondary hypertension evaluation, approach to young hypertensive, management"
+        },
+        {
+          "topic": "Rheumatic Fever",
+          "frequency": 2,
+          "details": "Etiopathogenesis, criteria, management"
+        },
+        {
+          "topic": "Acute Chest Pain",
+          "frequency": 2,
+          "details": "Approach, differential diagnosis, risk factors"
+        },
+        {
+          "topic": "Cardiogenic Shock",
+          "frequency": 1,
+          "details": "Clinical presentation (hypotension, crackles) and management"
+        }
+      ],
+      "respiratory": [
+        {
+          "topic": "Pneumonia",
+          "frequency": 5,
+          "details": "Community Acquired, Lobar; clinical features (dull note/crepitations), complications"
+        },
+        {
+          "topic": "Pleural Effusion",
+          "frequency": 3,
+          "details": "Etiology, clinical presentation, management"
+        },
+        {
+          "topic": "Bronchial Asthma",
+          "frequency": 3,
+          "details": "Acute severe asthma management"
+        },
+        {
+          "topic": "Pulmonary Edema",
+          "frequency": 3,
+          "details": "Non-cardiogenic/cardiogenic, pink frothy sputum management"
+        },
+        {
+          "topic": "Pulmonary Embolism",
+          "frequency": 2,
+          "details": "Post-partum presentation, DVT association, investigations"
+        }
+      ],
+      "gastroenterology_and_hepatology": [
+        {
+          "topic": "Acute Viral Hepatitis / Fulminant Hepatitis",
+          "frequency": 6,
+          "details": "Prodrome features, jaundice, tender hepatomegaly, complications"
+        },
+        {
+          "topic": "Liver Cirrhosis",
+          "frequency": 4,
+          "details": "Clinical features, complications (Portal HTN), management"
+        },
+        {
+          "topic": "Acute Pancreatitis",
+          "frequency": 3,
+          "details": "Epigastric pain radiating to back, systemic complications, management"
+        },
+        {
+          "topic": "Enteric Fever (Typhoid)",
+          "frequency": 3,
+          "details": "Features, investigations, complications, treatment"
+        },
+        {
+          "topic": "Wilson’s Disease",
+          "frequency": 2,
+          "details": "Genetics, pathology, clinical features, management"
+        },
+        {
+          "topic": "Cholera",
+          "frequency": 2,
+          "details": "Features, investigations, management"
+        },
+        {
+          "topic": "Acute Gastroenteritis",
+          "frequency": 2,
+          "details": "Dehydration assessment, epigastric pain, management"
+        }
+      ],
+      "neurology": [
+        {
+          "topic": "Meningitis",
+          "frequency": 7,
+          "details": "Pyogenic, Tuberculous, Cryptococcal; Fever, headache, altered sensorium"
+        },
+        {
+          "topic": "Stroke / CVA",
+          "frequency": 7,
+          "details": "Ischemic, Brainstem, Crossed Hemiplegia; Neuro-imaging findings, treatment"
+        },
+        {
+          "topic": "Status Epilepticus / Acute Seizures",
+          "frequency": 6,
+          "details": "Emergency management, tonic-clonic features"
+        },
+        {
+          "topic": "Myasthenia Gravis",
+          "frequency": 4,
+          "details": "Fatigability, ptosis, diplopia, diagnostic approach, treatment"
+        },
+        {
+          "topic": "Parkinson’s Disease",
+          "frequency": 3,
+          "details": "Tremor, rigidity, shuffling gait, management"
+        },
+        {
+          "topic": "Paraparesis / Coma",
+          "frequency": 3,
+          "details": "Diagnostic approach and management"
+        },
+        {
+          "topic": "Guillain-Barre Syndrome (GBS)",
+          "frequency": 2,
+          "details": "Pathophysiology, diagnosis, management"
+        },
+        {
+          "topic": "Cerebral Malaria",
+          "frequency": 1,
+          "details": "Fever, chills, altered sensorium, splenomegaly"
+        }
+      ],
+      "endocrinology": [
+        {
+          "topic": "Diabetes Mellitus / DKA / HHS",
+          "frequency": 5,
+          "details": "Hyperosmolar Hyperglycemic State, DKA features, management"
+        },
+        {
+          "topic": "Thyroid Disorders",
+          "frequency": 4,
+          "details": "Grave's disease (palpitations/neck swelling), Hypothyroidism, treatment strategies"
+        },
+        {
+          "topic": "Cushing’s Syndrome",
+          "frequency": 3,
+          "details": "Aetiology, clinical features, diagnostic approach"
+        },
+        {
+          "topic": "Acromegaly",
+          "frequency": 2,
+          "details": "Manifestations, complications, management"
+        },
+        {
+          "topic": "Hyperparathyroidism",
+          "frequency": 1,
+          "details": "Clinical features, diagnosis, management"
+        }
+      ],
+      "nephrology": [
+        {
+          "topic": "Acute Kidney Injury / Acute Renal Failure",
+          "frequency": 5,
+          "details": "Types, etiology, pathology, management"
+        },
+        {
+          "topic": "Acute Pyelonephritis",
+          "frequency": 3,
+          "details": "Toxic look, flank tenderness, investigations"
+        },
+        {
+          "topic": "Systemic Lupus Erythematosus (SLE) / Lupus Nephritis",
+          "frequency": 3,
+          "details": "Malar rash, joint pain, oral ulcers, staging and treatment"
+        },
+        {
+          "topic": "Chronic Kidney Disease (CKD)",
+          "frequency": 1,
+          "details": "Stages, biochemical changes"
+        },
+        {
+          "topic": "Glomerulonephritis",
+          "frequency": 1,
+          "details": "Immunopathology, Acute GN vs Pyelonephritis"
+        }
+      ],
+      "infectious_diseases_and_toxicology": [
+        {
+          "topic": "Snake Bite",
+          "frequency": 7,
+          "details": "Viper, Cobra, Neurotoxic bite management"
+        },
+        {
+          "topic": "Malaria",
+          "frequency": 5,
+          "details": "Cerebral malaria, Falciparum complications, management"
+        },
+        {
+          "topic": "Leptospirosis",
+          "frequency": 4,
+          "details": "Weil's disease; Fever, rash, subconjunctival hemorrhage"
+        },
+        {
+          "topic": "Tetanus",
+          "frequency": 3,
+          "details": "Stiffness, lockjaw, management"
+        },
+        {
+          "topic": "Scrub Typhus",
+          "frequency": 3,
+          "details": "Eschar, fever, altered sensorium"
+        },
+        {
+          "topic": "HIV/AIDS",
+          "frequency": 3,
+          "details": "Opportunistic infections, Post-exposure prophylaxis, ART"
+        },
+        {
+          "topic": "Dengue Fever",
+          "frequency": 2,
+          "details": "DHF management, investigations"
+        }
+      ],
+      "rheumatology_and_immunology": [
+        {
+          "topic": "Systemic Lupus Erythematosus (SLE)",
+          "frequency": 6,
+          "details": "Features, criteria, markers, management"
+        },
+        {
+          "topic": "Rheumatoid Arthritis",
+          "frequency": 5,
+          "details": "Inflammatory arthritis causes, management, DMARDs"
+        },
+        {
+          "topic": "Ankylosing Spondylitis",
+          "frequency": 2,
+          "details": "Clinical, examination, and radiological features"
+        }
+      ]
+    },
+    "short_notes": {
+      "cardiology": [
+        {
+          "topic": "Cardiac Tamponade",
+          "frequency": 5
+        },
+        {
+          "topic": "Sudden Cardiac Death / CPR / ACLS",
+          "frequency": 5
+        },
+        {
+          "topic": "Hypertension (Secondary/Malignant)",
+          "frequency": 5
+        },
+        {
+          "topic": "Atrial Fibrillation",
+          "frequency": 3
+        },
+        {
+          "topic": "Deep Vein Thrombosis (DVT)",
+          "frequency": 3
+        },
+        {
+          "topic": "Rheumatic Fever / RHD",
+          "frequency": 2
+        },
+        {
+          "topic": "Viral Myocarditis",
+          "frequency": 2
+        },
+        {
+          "topic": "Aortic Stenosis",
+          "frequency": 2
+        },
+        {
+          "topic": "Cor-pulmonale",
+          "frequency": 1
+        },
+        {
+          "topic": "Pericardial Tuberculosis",
+          "frequency": 1
+        }
+      ],
+      "respiratory": [
+        {
+          "topic": "Bronchial Asthma management",
+          "frequency": 7
+        },
+        {
+          "topic": "COPD",
+          "frequency": 6
+        },
+        {
+          "topic": "Lung Abscess",
+          "frequency": 3
+        },
+        {
+          "topic": "Tropical Pulmonary Eosinophilia",
+          "frequency": 3
+        },
+        {
+          "topic": "Bronchiectasis",
+          "frequency": 3
+        },
+        {
+          "topic": "Sleep Apnea / OSA",
+          "frequency": 3
+        },
+        {
+          "topic": "Lung Cancer (Pancoast/Histology)",
+          "frequency": 3
+        },
+        {
+          "topic": "Pneumothorax",
+          "frequency": 2
+        },
+        {
+          "topic": "ARDS",
+          "frequency": 2
+        },
+        {
+          "topic": "PFT (Obstructive vs Restrictive)",
+          "frequency": 1
+        }
+      ],
+      "gastroenterology_and_hepatology": [
+        {
+          "topic": "Spontaneous Bacterial Peritonitis (SBP)",
+          "frequency": 6
+        },
+        {
+          "topic": "Ulcerative Colitis",
+          "frequency": 6
+        },
+        {
+          "topic": "Amoebic Liver Abscess",
+          "frequency": 5
+        },
+        {
+          "topic": "Peptic Ulcer / H. Pylori",
+          "frequency": 3
+        },
+        {
+          "topic": "GERD",
+          "frequency": 3
+        },
+        {
+          "topic": "Chronic Diarrhea / Malabsorption",
+          "frequency": 3
+        },
+        {
+          "topic": "Hepatic Encephalopathy",
+          "frequency": 2
+        },
+        {
+          "topic": "Irritable Bowel Syndrome (IBS)",
+          "frequency": 2
+        },
+        {
+          "topic": "Alcoholic Hepatitis",
+          "frequency": 2
+        },
+        {
+          "topic": "Celiac Disease",
+          "frequency": 2
+        }
+      ],
+      "neurology": [
+        {
+          "topic": "Migraine",
+          "frequency": 7
+        },
+        {
+          "topic": "Parkinsonism",
+          "frequency": 5
+        },
+        {
+          "topic": "Seizures / Status Epilepticus (Focal)",
+          "frequency": 4
+        },
+        {
+          "topic": "Neurocysticercosis",
+          "frequency": 3
+        },
+        {
+          "topic": "Bell's Palsy / LMN Facial Palsy",
+          "frequency": 3
+        },
+        {
+          "topic": "Peripheral Neuropathy",
+          "frequency": 2
+        },
+        {
+          "topic": "Tension Headache",
+          "frequency": 2
+        },
+        {
+          "topic": "TB Meningitis",
+          "frequency": 2
+        },
+        {
+          "topic": "Myotonia",
+          "frequency": 1
+        }
+      ],
+      "nephrology": [
+        {
+          "topic": "Acute Glomerulonephritis (PSGN/RPGN)",
+          "frequency": 8
+        },
+        {
+          "topic": "Nephrotic Syndrome",
+          "frequency": 6
+        },
+        {
+          "topic": "UTI / Complicated UTI",
+          "frequency": 3
+        },
+        {
+          "topic": "Chronic Kidney Disease (CKD)",
+          "frequency": 3
+        },
+        {
+          "topic": "IgA Nephropathy",
+          "frequency": 2
+        },
+        {
+          "topic": "Hepatorenal Syndrome",
+          "frequency": 1
+        }
+      ],
+      "endocrinology_and_metabolic": [
+        {
+          "topic": "Hyperkalemia",
+          "frequency": 7
+        },
+        {
+          "topic": "Gout / Hyperuricemia",
+          "frequency": 7
+        },
+        {
+          "topic": "Osteoporosis",
+          "frequency": 6
+        },
+        {
+          "topic": "Obesity",
+          "frequency": 5
+        },
+        {
+          "topic": "Addison’s Disease / Crisis",
+          "frequency": 5
+        },
+        {
+          "topic": "Hypercalcemia / Hypocalcemia",
+          "frequency": 5
+        },
+        {
+          "topic": "Hypoglycemia",
+          "frequency": 4
+        },
+        {
+          "topic": "Metabolic Acidosis",
+          "frequency": 3
+        },
+        {
+          "topic": "Thyroid Storm",
+          "frequency": 2
+        },
+        {
+          "topic": "Insulin Analogues",
+          "frequency": 2
+        }
+      ],
+      "hematology": [
+        {
+          "topic": "Megaloblastic Anemia / Vitamin B12",
+          "frequency": 7
+        },
+        {
+          "topic": "Hemolytic Anemia",
+          "frequency": 5
+        },
+        {
+          "topic": "CML",
+          "frequency": 4
+        },
+        {
+          "topic": "Iron Deficiency Anemia",
+          "frequency": 3
+        },
+        {
+          "topic": "ITP",
+          "frequency": 3
+        },
+        {
+          "topic": "Multiple Myeloma",
+          "frequency": 3
+        },
+        {
+          "topic": "Aplastic Anemia",
+          "frequency": 3
+        },
+        {
+          "topic": "Hemophilia",
+          "frequency": 3
+        },
+        {
+          "topic": "Sickle Cell Anemia",
+          "frequency": 2
+        }
+      ],
+      "infectious_diseases_and_toxicology": [
+        {
+          "topic": "HIV (ART, PEP, Opportunistic Infections)",
+          "frequency": 9
+        },
+        {
+          "topic": "Poisoning (Yellow Oleander, Rodenticide, OP)",
+          "frequency": 9
+        },
+        {
+          "topic": "Leprosy (Reactions/Types)",
+          "frequency": 7
+        },
+        {
+          "topic": "Scrub Typhus",
+          "frequency": 5
+        },
+        {
+          "topic": "Scabies",
+          "frequency": 4
+        },
+        {
+          "topic": "Rabies / Dog Bite",
+          "frequency": 4
+        },
+        {
+          "topic": "Filariasis",
+          "frequency": 3
+        },
+        {
+          "topic": "COVID-19",
+          "frequency": 2
+        },
+        {
+          "topic": "Tetanus",
+          "frequency": 2
+        },
+        {
+          "topic": "Scorpion Sting",
+          "frequency": 2
+        }
+      ],
+      "psychiatry_and_dermatology": [
+        {
+          "topic": "Schizophrenia",
+          "frequency": 5
+        },
+        {
+          "topic": "Depression / Bipolar Disorder",
+          "frequency": 5
+        },
+        {
+          "topic": "Panic Disorder / Anxiety",
+          "frequency": 4
+        },
+        {
+          "topic": "Psoriasis",
+          "frequency": 3
+        },
+        {
+          "topic": "Pemphigus Vulgaris",
+          "frequency": 2
+        },
+        {
+          "topic": "Erythema Nodosum",
+          "frequency": 2
+        },
+        {
+          "topic": "Lichen Planus",
+          "frequency": 1
+        }
+      ],
+      "genetics_and_forensic": [
+        {
+          "topic": "Pedigree Charts (Auto Dom/Rec, X-linked)",
+          "frequency": 7
+        },
+        {
+          "topic": "Medical Ethics (Consent, Negligence, Autonomy)",
+          "frequency": 7
+        },
+        {
+          "topic": "Falls in Elderly",
+          "frequency": 5
+        },
+        {
+          "topic": "Heat Stroke",
+          "frequency": 4
+        },
+        {
+          "topic": "Thiamine Deficiency",
+          "frequency": 4
+        },
+        {
+          "topic": "Hanging / Drowning",
+          "frequency": 2
+        }
+      ]
+    }
+  }
+}
