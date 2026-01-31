@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYQ Dashboard</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subject-section {
+            margin-bottom: 50px;
+        }
+
+        .subject-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .topic-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .badge {
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge.high-yield {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .details {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+        
+        .error-msg {
+            color: #ef4444;
+            padding: 20px;
+            background: #fee2e2;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Medical PYQ Yield Tracker</h1>
+    </header>
+
+    <main id="content-area">
+        <p style="color: var(--text-muted);">Loading data...</p>
+    </main>
+
+    <script>
+        // Define the subjects and their corresponding file names
+        const subjects = [
+            { name: "Obstetrics & Gynaecology (OG)", file: "og.json" },
+            { name: "Surgery", file: "surgery.json" },
+            { name: "Medicine", file: "medicine.json" },
+            { name: "Paediatrics", file: "paediatrics.json" }
+        ];
+
+        const contentArea = document.getElementById('content-area');
+
+        // Helper: Determine if a key is just a numeric index (e.g., "0", "1", "15")
+        const isNumericKey = (key) => !isNaN(parseInt(key)) && isFinite(key);
+
+        /**
+         * Normalizes JSON data into a standard array format:
+         * [ { topic: "Topic Name", frequency: 5, details: "..." }, ... ]
+         */
+        function normalizeData(data) {
+            let normalized = [];
+
+            // Case 1: Data is an Array
+            if (Array.isArray(data)) {
+                // If the array items contain the topic name inside them
+                normalized = data.map(item => {
+                    // Check if 'topic' key exists, if not, try to find a key that isn't freq/details
+                    // Assuming structure is like the snippet but inside an array
+                    return item; 
+                });
+            } 
+            // Case 2: Data is an Object
+            else if (typeof data === 'object' && data !== null) {
+                const keys = Object.keys(data);
+                
+                keys.forEach(key => {
+                    const value = data[key];
+                    
+                    // Ignore strict array indices if they are just wrapper keys "0": {...}
+                    // We assume the value inside contains the data
+                    if (isNumericKey(key) && typeof value === 'object') {
+                        // If the object inside doesn't have a name, we might be stuck, 
+                        // but usually in this case the structure matches the snippet.
+                        // Let's try to grab the Name from the object if it exists, otherwise use key.
+                        normalized.push({
+                            topic: value.topic || value.name || `Topic ${key}`, 
+                            ...value
+                        });
+                    } 
+                    // Case 3: Key is the Topic Name (The snippet format)
+                    else {
+                        normalized.push({
+                            topic: key,
+                            ...value
+                        });
+                    }
+                });
+            }
+            return normalized;
+        }
+
+        async function loadAndRender() {
+            contentArea.innerHTML = ''; // Clear loading message
+
+            for (const subject of subjects) {
+                const section = document.createElement('section');
+                section.className = 'subject-section';
+                
+                const title = document.createElement('h2');
+                title.className = 'subject-title';
+                title.textContent = subject.name;
+                section.appendChild(title);
+
+                const grid = document.createElement('div');
+                grid.className = 'topic-grid';
+
+                try {
+                    // Fetch the JSON file
+                    const response = await fetch(subject.file);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const jsonData = await response.json();
+
+                    // 1. Normalize Structure
+                    const items = normalizeData(jsonData);
+
+                    // 2. Sort by Frequency (High to Low)
+                    items.sort((a, b) => (b.frequency || 0) - (a.frequency || 0));
+
+                    // 3. Render Cards
+                    if (items.length === 0) {
+                        grid.innerHTML = '<p style="color:var(--text-muted)">No data found.</p>';
+                    } else {
+                        items.forEach(item => {
+                            const freq = item.frequency || 0;
+                            const isHighYield = freq >= 5; // Visual logic for styling
+
+                            const card = document.createElement('article');
+                            card.className = 'card';
+                            card.innerHTML = `
+                                <div class="card-header">
+                                    <span class="topic-name">${item.topic}</span>
+                                    <span class="badge ${isHighYield ? 'high-yield' : ''}">
+                                        Freq: ${freq}
+                                    </span>
+                                </div>
+                                <div class="details">
+                                    ${item.details || 'No details provided.'}
+                                </div>
+                            `;
+                            grid.appendChild(card);
+                        });
+                    }
+                    section.appendChild(grid);
+                } catch (e) {
+                    console.error(`Error loading ${subject.name}:`, e);
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-msg';
+                    errorDiv.textContent = `Could not load data for ${subject.name}. Ensure ${subject.file} is in the folder and you are running a local server.`;
+                    section.appendChild(errorDiv);
+                }
+
+                contentArea.appendChild(section);
+            }
+        }
+
+        // Initialize
+        loadAndRender();
+
+    </script>
+</body>
+</html>
