@@ -3,148 +3,148 @@
     "long_essays": {
       "obstetrics": {
         "Hypertensive Disorders of Pregnancy (Preeclampsia / Eclampsia)": {
-          "frequency": 10,
-          "details": "Management of severe preeclampsia/eclampsia (32-36 weeks), anticonvulsants (Magnesium Sulphate), complications (HELLP), differential diagnosis of convulsions."
+          "frequency": 12,
+          "details": "Management of eclampsia at 32-37 weeks, management of seizures (Magnesium Sulphate), maternal/fetal risks, differential diagnosis of convulsions in pregnancy."
         },
         "Anaemia in Pregnancy": {
-          "frequency": 8,
-          "details": "Iron deficiency anaemia, diagnosis, grading severity, management (parenteral iron/blood transfusion), prevention, severe anaemia at 32-37 weeks."
+          "frequency": 10,
+          "details": "Iron deficiency anaemia, G3P2/G4P2 case scenarios with breathlessness at 32 weeks, investigations (Hb, peripheral smear, serum ferritin), management (parenteral iron vs blood transfusion), plan of management at term."
         },
         "Antepartum Haemorrhage (APH)": {
-          "frequency": 7,
-          "details": "Placenta Previa vs Abruptio Placentae, clinical differentiation, management of bleeding at 32-36 weeks, complications (DIC)."
+          "frequency": 8,
+          "details": "Placenta Previa vs Abruptio Placentae, management of bleeding at 32-34 weeks, types/diagnosis/management of low-lying placenta."
         },
         "Postpartum Haemorrhage (PPH)": {
-          "frequency": 6,
-          "details": "Definition, causes (Atonic, Traumatic), management (medical/surgical/tamponade), prevention (AMTSL)."
+          "frequency": 7,
+          "details": "Atonic vs Traumatic, management steps (resuscitation, medical management, surgical interventions), prevention using AMTSL."
         },
         "Multiple Pregnancy (Twins)": {
-          "frequency": 5,
-          "details": "Diagnosis, complications (maternal/fetal), management of labour, monochorionic twin complications (TTTS)."
+          "frequency": 6,
+          "details": "Clinical features, maternal/fetal complications, conduct of delivery, risks of monochorionic twins (TTTS)."
         },
         "Malpresentations (Breech)": {
+          "frequency": 6,
+          "details": "Causes of breech, management of assisted breech delivery at 36-38 weeks, complications in labour."
+        },
+        "Labour Complications & Management (LSCS / VBAC)": {
           "frequency": 5,
-          "details": "Causes, types, management of vaginal breech delivery (assisted breech), complications, External Cephalic Version (ECV)."
+          "details": "Management of previous LSCS (TOLAC/VBAC), definitions and classification of CS, measures to reduce CS rates."
         },
         "Heart Disease in Pregnancy": {
           "frequency": 4,
-          "details": "Rheumatic Heart Disease (Mitral Stenosis), NYHA classification, management during pregnancy and labour, failure management."
-        },
-        "Labour Complications (Obstructed Labour / Previous LSCS)": {
-          "frequency": 3,
-          "details": "Causes, diagnosis, management of obstructed labour, Trial of Labour After Caesarean (TOLAC/VBAC), rupture uterus."
+          "details": "Rheumatic Heart Disease (Mitral Stenosis), NYHA classification, management during labour and principles of cardiac failure management."
         },
         "Diabetes in Pregnancy (GDM)": {
-          "frequency": 3,
-          "details": "Screening (DIPSI), diagnosis, antenatal and intrapartum management, complications (fetal/maternal)."
+          "frequency": 4,
+          "details": "Screening (GTT/DIPSI), criteria for diagnosis, complications in newborn, management of labor on insulin therapy."
         }
       },
       "gynaecology": {
         "Fibroid Uterus / AUB": {
-          "frequency": 8,
-          "details": "Classification (FIGO/PALM-COEIN), clinical features (menorrhagia), differential diagnosis of mass abdomen, management (medical/surgical - myomectomy vs hysterectomy)."
+          "frequency": 10,
+          "details": "FIGO classification of AUB (PALM-COEIN), medical and surgical management (myomectomy vs hysterectomy), complications of fibroids, evaluation of 40-46 year old with enlarged uterus."
         },
         "Carcinoma Cervix": {
-          "frequency": 7,
-          "details": "Staging (FIGO), screening (Pap smear), management of Stage I/IB, prevention (HPV vaccine), risk factors."
+          "frequency": 9,
+          "details": "Latest FIGO (2018) staging, screening (Pap/HPV), management of stage IB1 in 50-56 year olds, HPV vaccination role."
         },
         "Uterovaginal Prolapse": {
-          "frequency": 7,
-          "details": "Etiology, supports of uterus, classification (POPQ/Shaw's), management (conservative/surgical - Fothergill's, Vaginal Hysterectomy)."
+          "frequency": 8,
+          "details": "Etiology and supports of uterus, classification (POPQ vs Shaw’s), surgical management (Fothergill's, VH/PFR), management of decubitus ulcer."
         },
         "Infertility": {
-          "frequency": 6,
-          "details": "Evaluation of couple (male/female factors), tubal patency tests, ovulation induction, management of primary/secondary infertility."
+          "frequency": 7,
+          "details": "Inability to conceive after 3-5 years, history and evaluation of couple, tubal patency tests, semen analysis (WHO criteria), evaluation of male subfertile partner."
         },
         "Ovarian Tumours": {
-          "frequency": 5,
-          "details": "Classification, differential diagnosis of mass abdomen (benign vs malignant), management of dermoid cyst/epithelial tumours, tumor markers."
-        },
-        "Carcinoma Endometrium / Postmenopausal Bleeding": {
-          "frequency": 4,
-          "details": "Causes of PMB, risk factors, staging, evaluation (biopsy/USG), management."
+          "frequency": 6,
+          "details": "Classify ovarian tumours, symptoms and management of dermoid cysts, diagnosis of malignant ovarian tumour, FIGO staging."
         },
         "Contraception": {
-          "frequency": 3,
-          "details": "Hormonal (OCPs), Intrauterine Devices (Cu-T/Mirena/LNG-IUS), Sterilization methods (Tubectomy)."
+          "frequency": 6,
+          "details": "Mechanism of action, side effects, and contraindications of Intrauterine Devices (IUCD) and Hormonal Contraceptives (OCPs)."
+        },
+        "Carcinoma Endometrium & PMB": {
+          "frequency": 5,
+          "details": "Causes of postmenopausal bleeding, risk factors for endometrial cancer, management of FIGO stage I."
+        },
+        "Physiology of Menstruation": {
+          "frequency": 4,
+          "details": "Menstrual cycle in detail, hormonal regulation of follicular and luteal phases, definition of normal menstruation."
         }
       }
     },
     "short_notes": {
       "obstetrics": {
-        "Fetal Monitoring & Assessment": {
-          "frequency": 8,
-          "details": "Biophysical profile (BPP), Non-stress test (NST), CTG (decelerations), Partogram, First trimester USG."
+        "Fetal Assessment & Monitoring": {
+          "frequency": 10,
+          "details": "Biophysical profile (BPP), Non-stress test (NST), Partogram, First trimester screening (NT scan), APGAR score."
         },
         "Operative Obstetrics": {
+          "frequency": 8,
+          "details": "Forceps (prerequisites/types/complications), Vacuum (Ventouse) delivery, Episiotomy (types/complications), External Cephalic Version (ECV) contraindications."
+        },
+        "Abortion & Ectopic Pregnancy": {
+          "frequency": 8,
+          "details": "Missed abortion, Incomplete abortion, Medical vs Surgical management of ectopic, Recurrent pregnancy loss."
+        },
+        "Maternal Health & Social Obstetrics": {
           "frequency": 7,
-          "details": "Forceps delivery, Ventouse (Vacuum) delivery, Episiotomy (types/complications), Caesarean section (indications/complications)."
+          "details": "Define maternal mortality, causes (direct/indirect), Respectful Maternity Care (RMC) components, MTP Act (rules and regulations), Labour Care Guide."
         },
-        "Maternal Mortality & Social Obstetrics": {
-          "frequency": 6,
-          "details": "Definition (MMR), causes (Direct/Indirect), prevention strategies, RCH programmes."
-        },
-        "Puerperium": {
-          "frequency": 6,
-          "details": "Puerperal sepsis/pyrexia causes and management, physiology of lactation, breast feeding benefits, lactational failure."
-        },
-        "Abortion & Early Pregnancy Complications": {
-          "frequency": 6,
-          "details": "Missed abortion, Recurrent pregnancy loss, Ectopic pregnancy (medical/surgical management), Vesicular mole (follow-up)."
-        },
-        "Malpositions & Malpresentations": {
-          "frequency": 5,
-          "details": "Deep transverse arrest, Occipito-posterior position, Shoulder dystocia, Cord prolapse, Face presentation."
+        "Puerperium & Lactation": {
+          "frequency": 7,
+          "details": "Puerperal pyrexia/sepsis causes, Physiology of lactation, benefits of breast feeding, Neonatal jaundice causes."
         },
         "Pharmacotherapy": {
+          "frequency": 6,
+          "details": "Magnesium Sulphate (dose/toxicity), Anti-D prophylaxis, Prostaglandins in obstetrics, Parenteral iron therapy, Labour Analgesia."
+        },
+        "Malpositions & Complications": {
+          "frequency": 6,
+          "details": "Deep transverse arrest, Shoulder dystocia management, Cord prolapse, Occipito-posterior position, Cervical incompetence (McDonald/Shirodkar)."
+        },
+        "Multiple Pregnancy Details": {
           "frequency": 5,
-          "details": "Magnesium sulphate (regimens/toxicity), Anti-D prophylaxis, Iron sucrose/parenteral iron, Prostaglandins, Oxytocics."
+          "details": "Complications of monochorionic twins, Burns Marshall method, management of labor in twins."
         },
-        "Newborn": {
+        "Newborn Care": {
           "frequency": 5,
-          "details": "Neonatal resuscitation, Neonatal jaundice, Birth asphyxia, Caput succedaneum vs Cephalhematoma."
-        },
-        "Medical Disorders": {
-          "frequency": 4,
-          "details": "Rh isoimmunization prevention, UTI in pregnancy (Asymptomatic bacteriuria), HIV (PPTCT), Vomiting in pregnancy (Hyperemesis)."
-        },
-        "Preterm Labour & PROM": {
-          "frequency": 4,
-          "details": "Risk factors, diagnosis, management (tocolytics/steroids), PPROM complications."
+          "details": "Steps of neonatal resuscitation, Causes of neonatal hypoglycaemia, Hemolytic disease of newborn."
         }
       },
       "gynaecology": {
         "Contraception": {
-          "frequency": 9,
-          "details": "IUCD (complications/contraindications/PPIUCD), OCPs (benefits/side effects/contraindications), Emergency contraception, Barrier methods (Condom), Sterilization (Laparoscopic/Puerperal)."
+          "frequency": 11,
+          "details": "LNG-IUS (Mirena), PPIUCD, non-contraceptive benefits of OCPs, Barrier methods (male condom advantages/problems), Emergency contraception, Hormone Replacement Therapy (HRT)."
         },
         "Infections": {
+          "frequency": 9,
+          "details": "Bacterial Vaginosis (Amsel's criteria), Vulvovaginal Candidiasis (symptoms/treatment), Trichomonas Vaginitis, PID (diagnosis/OPD management), Genital Tuberculosis diagnosis."
+        },
+        "Diagnostic & Surgical Procedures": {
+          "frequency": 8,
+          "details": "Hysteroscopy uses, Laparoscopy indications/complications, Liquid-based cytology (LBC), Colposcopy indications, Tubal patency tests (HSG), Semen analysis (WHO)."
+        },
+        "Menstrual & Hormonal Disorders": {
           "frequency": 7,
-          "details": "Vaginitis (Candidiasis, Trichomoniasis, Bacterial Vaginosis), PID (Acute/Chronic), Genital Tuberculosis, Syndromic management."
+          "details": "PCOS (Rotterdam criteria/management), Primary/Secondary Amenorrhea causes, Dysmenorrhea (classification), Puberty menorrhagia."
         },
-        "Menstrual Disorders": {
+        "Benign Conditions": {
           "frequency": 6,
-          "details": "Dysmenorrhea (Congestive/Spasmodic), Puberty menorrhagia, Cryptomenorrhea, Primary/Secondary Amenorrhea causes."
-        },
-        "Diagnostic Procedures": {
-          "frequency": 6,
-          "details": "Semen analysis (WHO criteria), Tubal patency tests (HSG), Hysteroscopy, Laparoscopy (indications/complications), Pap smear, Colposcopy."
-        },
-        "Endometriosis & Adenomyosis": {
-          "frequency": 5,
-          "details": "Clinical features, diagnosis (Chocolate cyst), medical/surgical management."
+          "details": "Myomectomy (indications), Adenomyosis, Endometriosis (theories/features), Bartholin cyst, Imperforate hymen features."
         },
         "Anatomy & Development": {
-          "frequency": 4,
-          "details": "Supports of uterus, Lymphatic drainage of cervix, Mullerian anomalies (Imperforate hymen/Septate uterus)."
+          "frequency": 5,
+          "details": "Supports of uterus (anatomical/physiological), Development of ovary, Mullerian anomalies."
         },
-        "Endocrinology": {
-          "frequency": 4,
-          "details": "PCOS (diagnosis/management), Turner's syndrome, Hormone Replacement Therapy (HRT), Hyperprolactinemia."
+        "Molar Pregnancy": {
+          "frequency": 5,
+          "details": "Diagnosis and management of hydatidiform mole, Follow-up of vesicular mole, complete vs partial mole differences."
         },
         "Miscellaneous": {
           "frequency": 4,
-          "details": "Stress urinary incontinence, Vesico-vaginal fistula (VVF), Pruritus vulvae, Bartholin cyst, Decubitus ulcer."
+          "details": "Vesico-Vaginal Fistula (VVF) etiology, Stress Urinary Incontinence (SUI), Turner's Syndrome, Ormeloxifene."
         }
       }
     }
